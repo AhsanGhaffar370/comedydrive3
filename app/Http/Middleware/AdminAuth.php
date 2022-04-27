@@ -17,10 +17,10 @@ class AdminAuth
     public function handle(Request $request, Closure $next)
     {
         // dd(auth());
-        if (! auth()->check() ) {
+        if (!auth()->check() && !auth()->user()->role_id == 1) {
             return redirect()->to( '/auth/login' );
         }
 
-        // return $next($request);
+        return $next($request);
     }
 }

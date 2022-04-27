@@ -24,10 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (auth::check() && auth()->user()->role == 2) {
+        // if (auth::check() && auth()->user()->role == 2) {
             return view('front/home');
-        }else{
-            abort(403);
-        }
+        // }else{
+        //     abort(403);
+        // }
     }
 }

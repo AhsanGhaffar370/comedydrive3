@@ -1,34 +1,13 @@
 
-    <!-- footer -->
+    <!-- footer content -->
     <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="widget">
-                        
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="widget">
-                        
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="widget">
-                        
-                    </div>
-                </div>
-            </div>
-            
+        <div class="pull-right">
+        Copyright © 2018 <a href={{route('admin.dashboard')}} class="cl_bd">Ship Search</a>. All rights reserved. 
         </div>
+        <div class="clearfix"></div>
     </footer>
-
-    <div class="copyright text-center">
-        <div class="container">
-            <p><script>new Date().getFullYear()>document.write(new Date().getFullYear());</script> © COMEDY SAFE DRIVER</p>
-        </div>
+    <!-- /footer content -->
     </div>
-    <!-- footer -->
+</div>
 
-
-    @include('script')
+@include('admin/includes/script')

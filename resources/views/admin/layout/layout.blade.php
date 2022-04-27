@@ -12,15 +12,21 @@
      
 </head>
 
-<body class="bg-white">
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            @include('admin/includes/header')
 
-@include('front/includes/header')
+            <!-- page content -->
+            <div class="right_col page_height" role="main" style="min-height: 1000px;">
+               @yield('content')
+			   @show
+            </div>
+            <!-- /page content -->
 
-@yield('content')
-
-@include('front/includes/footer')
-
-
+            @include('admin/includes/footer')
+        </div>
+    </div>
 </body>
 
 </html>

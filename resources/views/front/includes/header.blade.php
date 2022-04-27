@@ -22,6 +22,17 @@
                     <li><a href="{{ route('question') }}">Got Questions?</a></li>
                     <li><a href="{{ route('contact') }}">Contact Us</a></li>
                     <li><a href="{{ route('course') }}">Re-Enter Course</a></li>
+                    @can('student')
+                    <li><a href="{{ route('student-courses') }}">Student Course</a></li>
+                    <li><a href="{{ route('logout') }}">Logout</a></li>
+                    @endif
+                    @can('admin')
+                    <li><a href="{{ route('admin.dashboard') }}">Admin Dashboard</a></li>
+                    <li><a href="{{ route('logout') }}">Logout</a></li>
+                    @endif
+                    @cannot('admin') && @cannot('student')
+                    <li><a href="{{ route('login') }}">Login</a></li>
+                    @endif
                 </ul>
                 </div>
             </div>

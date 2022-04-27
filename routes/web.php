@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FrontController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,27 +24,35 @@ Auth::routes();
 
 // });
 
+Route::get('/', [FrontController::class, 'index'])->name('home');
+Route::get('/home', [FrontController::class, 'index'])->name('home');
+Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
+Route::get('/course', [FrontController::class, 'course'])->name('course');
+Route::get('/get_enrolled', [FrontController::class, 'get_enrolled'])->name('get_enrolled');
+Route::get('/question', [FrontController::class, 'question'])->name('question');
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['middleware'=>['student_auth']],function(){
+    Route::get('/student-courses', [FrontController::class, 'student_courses'])->name('student-courses');
+});
 
+Route::group(['middleware'=>['admin_auth'], 'prefix' => 'admin', 'as' => 'admin.'],function(){
 
-Route::get('/contact', function () {
-    return view('front/contact');
-}
-)->name('contact');
+    // Dashboar
+    Route::get('/dashboard', [DashboardController::class, 'listing'] )->name('dashboard');
 
-Route::get('/course', function () {
-        return view('front/course');
-    }
-)->name('course');
+    // students
+    Route::get('/students/view', [StudentController::class, 'view'] )->name('students.view');
 
-Route::get('/get_enrolled', function () {
-        return view('front/get_enrolled');
-    }
-)->name('get_enrolled');
+    Route::get('/students/add', [StudentController::class, 'view_add'] )->name('students.add');
+    Route::post('/students/add_req', [StudentController::class, 'add_req'] )->name('students.add_req');
+    
+    Route::get('/students/update/{id}',[StudentController::class, 'view_update'])->name('students.update.id');
+    Route::post('/students/update_req',[StudentController::class, 'update_req'])->name('students.update_req');
 
-Route::get('/question', function () {
-        return view('front/question');
-    }
-)->name('question');
+    Route::get('/students/delete/{id}',[StudentController::class, 'delete'])->name('students.delete.id');
+
+    Route::get('/students/update-status/{id}/{status}',[StudentController::class, 'update_status'])->name('students.update_status.id.status');
+
+});
+
+Route::get('/logout',[LoginController::class, 'logout'])->name('logout');

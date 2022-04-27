@@ -16,10 +16,11 @@ class StudentAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if (! auth()->check() ) {
+        if (!auth()->check() && !auth()->user()->role_id == 2) {
             
             return redirect()->to( '/auth/login' );
         }
+        
         return $next($request);
     }
 }

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -29,15 +32,12 @@ class LoginController extends Controller
     // protected $redirectTo = RouteServiceProvider::HOME;
     public function redirect()
     {
-        if (! auth()->check() ) {
-            return redirect()->to( '/auth/login' );
-        }
+        if (Auth::check() && auth()->user()->role_id == 1) 
+            return redirect()->to( 'admin.dashboard' );
+        if (Auth::check() && auth()->user()->role_id == 2) 
+            return redirect()->to( 'student_courses' );
 
-        // if (auth()->user()->role) {
-        //     return redirect()->to( '/admin-dashboard' );
-        // }
-
-        return redirect()->to( '/dashboard' );
+        return redirect()->to( '/' );
     }
 
     /**
@@ -48,5 +48,15 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+    public function logout(Request $request)
+    {
+        Auth::logout();
+     
+        $request->session()->invalidate();
+     
+        $request->session()->regenerateToken();
+     
+        return redirect('/');
     }
 }
