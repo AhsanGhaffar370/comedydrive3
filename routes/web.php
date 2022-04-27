@@ -41,15 +41,16 @@ Route::group(['middleware'=>['admin_auth'], 'prefix' => 'admin', 'as' => 'admin.
     Route::get('/dashboard', [DashboardController::class, 'listing'] )->name('dashboard');
 
     // students
-    Route::get('/students/view', [StudentController::class, 'view'] )->name('students.view');
+    Route::get('/students/list', [StudentController::class, 'list'] )->name('students.list');
+    Route::get('/students/view/{id}', [StudentController::class, 'view'] )->name('students.view');
 
     Route::get('/students/add', [StudentController::class, 'view_add'] )->name('students.add');
     Route::post('/students/add_req', [StudentController::class, 'add_req'] )->name('students.add_req');
     
-    Route::get('/students/update/{id}',[StudentController::class, 'view_update'])->name('students.update.id');
+    Route::get('/students/update/{id}',[StudentController::class, 'view_update'])->name('students.update');
     Route::post('/students/update_req',[StudentController::class, 'update_req'])->name('students.update_req');
 
-    Route::get('/students/delete/{id}',[StudentController::class, 'delete'])->name('students.delete.id');
+    Route::get('/students/delete/{id}',[StudentController::class, 'delete'])->name('students.delete');
 
     Route::get('/students/update-status/{id}/{status}',[StudentController::class, 'update_status'])->name('students.update_status.id.status');
 

@@ -1,10 +1,11 @@
 
 <!-- bootstrap -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 <!-- font awesome -->
-<script src="https://kit.fontawesome.com/7516c4b4cc.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/a33530bb41.js" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 
 <!-- custom css -->
 <link href="{{ asset('admin_asset/css/custom.min.css') }}" rel="stylesheet">

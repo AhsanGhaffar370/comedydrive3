@@ -5,7 +5,7 @@
     <div class="left_col scroll-view">
         <div class="navbar nav_title bg_bl" style="border: 0;">
             <a href={{route('admin.dashboard')}} class="site_title text-center pl-2 pr-2">
-            <!-- <i class="fa fa-paw"></i> <span>ShipSearch</span> -->
+            <!-- <i class="fa fa-paw"></i> <span>ComedyDrive</span> -->
             <img src="{{asset('assets/images/logo.png')}}" height="35" width="30" class="logo footer_logo" 
             style="margin-top: -9px;">
             <p class="d_in admin-logo">Comedy Drive</p>
@@ -23,7 +23,7 @@
             <div class="menu_section mb-3">
                 <h3 class="pt-2 pb-2 text-light bg_bl">Modules</h3>
                 <ul class="nav side-menu">
-                    <li><a href={{route('admin.students.view')}}><i class="fas fa-link"></i> &nbsp; Students </a></li>
+                    <li><a href={{route('admin.students.list')}}><i class="fas fa-link"></i> &nbsp; Students </a></li>
                 </ul>
             </div>
         </div>
