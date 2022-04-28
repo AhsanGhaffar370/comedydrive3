@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\StudentDetail;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -64,12 +65,36 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        dd($data);
+        $user = User::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role_id' => 2,
             'status' => 1
         ]);
+
+        $student_details = StudentDetail::create([
+            'state_id' => $data['state_id'],
+            'course_id' => $data['course_id'],
+            'county_id' => $data['county_id'],
+            'case_number' => $data['case_number'],
+            'citation_number' => $data['citation_number'],
+            'citation_due_date' => $data['citation_due_date'],
+            'citation_court_due_date' => $data['citation_court_due_date'],
+            'course_completion_certificate_price' => $data['course_completion_certificate_price'],
+            
+            'payment_type' => $data['payment_type'],
+            'bank_name' => $data['bank_name'],
+            'bank_account_name' => $data['bank_account_name'],
+            'bank_account_no' => $data['bank_account_no'],
+            'bank_account_routing_no' => $data['bank_account_routing_no'],
+            'bank_account_type' => $data['bank_account_type'],
+            'billing_zipcode' => $data['billing_zipcode'],
+            'form_step' => '2',
+            'course_step' => '1.1',
+            'status' => '1',
+        ]);
+
+        return $user;
     }
 }

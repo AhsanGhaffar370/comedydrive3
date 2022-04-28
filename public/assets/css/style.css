@@ -102,7 +102,7 @@
   .mn-hd p{}
   
   /* header CSS */
-  header{-webkit-transition:all 0.4s ease-In-out;-moz-transition:all 0.4s ease-In-out;-o-transition:all 0.4s ease-In-out;transition:all 0.4s ease-In-out; position: relative; z-index: 5;  }
+  header{-webkit-transition:all 0.4s ease-In-out;-moz-transition:all 0.4s ease-In-out;-o-transition:all 0.4s ease-In-out;transition:all 0.4s ease-In-out;}
   .main-header{
       padding: 20px 0 0;
       background-color: #FEFEFE;
@@ -114,6 +114,11 @@
   .menu{font-size:0px;display:inline-block;vertical-align:middle;}
   .menu li{display:inline-block;vertical-align:middle;padding-left:0px;width: 150px;}
   .menu li a{display:block;font-size: 15px;color: #000;font-weight: 400;line-height: 25px;}
+  .menu li:nth-child(5) a{border: 1px solid transparent; font-size: 15px;color: #fff;background-color: var(--lg-purple);padding: 10px;border-radius: 5px;text-align: center;margin: 0 20px;}
+  .menu li:nth-child(5) a:hover{background-color: var(--white);border:1px solid var(--lg-purple);}
+  .menu li:nth-child(6) a{border: 1px solid transparent; font-size: 15px;color: #fff;border:1px solid var(--lg-purple);background-color: var(--lg-purple);padding: 10px;border-radius: 5px;text-align: center;margin: 0 20px;}
+  .menu li:nth-child(6) a:hover{background-color: var(--white);border:1px solid var(--lg-purple);}
+  
   .menu li:hover a,
   .menu li.active a{font-weight: 900;color:#4F55B2;}
   
@@ -147,7 +152,7 @@
   .menu-Bar.open span:nth-child(3){transform:rotate(-45deg);top:12px;transform-origin:right-center;}
   
   /* Main Banner CSS */
-  .mainBanner{background-image: url(../images/banner/bg-banner3.jpg);background-size:cover;background-position:center;height:100vh;background-repeat:no-repeat;display:flex;align-items:center;position:relative; /* z-index: -1; */ }
+  .mainBanner{background-image: url(../images/banner/bg-banner3.jpg);background-size:cover;background-position:center;height:100vh;background-repeat:no-repeat;display:flex;align-items:center;position:relative;z-index: -1;}
   .puzzle {position: absolute;left: 14%;top: 7%;}
   .aplus{position: absolute;right: 5%;top: 7%;}
   .board {position: absolute;left: 26%;bottom: 30%;}
@@ -166,7 +171,7 @@
   .ylw-sd{width: 70%;padding: 10px;border-bottom: 1px solid;border-top: 1px solid;}
   .sd-text {background-color: var(--black);border-top-right-radius: 60px;border-bottom-right-radius: 60px;width: 28%;padding: 10px;}
   .sd-text h2{width: 50%;text-transform: uppercase;color: var(--white);}
-  ul.main-slider {position: relative;left: 23%;bottom: -192px; max-width: 600px; }
+  ul.main-slider {position: relative;left: 23%;bottom: -192px;}
   /* Custom CSS Styling */
   section.serv-bar {padding: 50px 0;background-color: var(--lg-purple);
   }
@@ -342,7 +347,7 @@
   .inner-text{text-align: center;}
   .inner-text h1{color: var(--white);}
   .inner-text h3{color: var(--white);}
-  .question-wrap {background-color: #FEFEFE;padding: 50px 50px;border-radius: 20px;box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);margin: -700px auto 0;width: calc(100% - 200px);     position: relative; }
+  .question-wrap {background-color: #FEFEFE;padding: 50px 50px;border-radius: 20px;box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);margin: -700px auto 0;width: calc(100% - 200px);}
   .question:before {content: '';position: absolute;height: 48px;width: 24px;background-color: #2948BD;left: -51px;border-top-right-radius: 25px;border-bottom-right-radius: 25px;bottom: -9px;}
   .question {padding: 0 0 20px 45px;align-items: center;position: relative;}
   .question a {font-size: 20px;line-height: 30px;font-family: 'Lato';font-weight: 900;}
@@ -382,7 +387,7 @@
   
   /*Re Enter*/
   .mainBanner.renter:after {content: '';position: absolute;height: 720px;width: 1440px;background-image: url(../images/curve.png);bottom: -2px;left: 0px;}
-  .course-wrap {background-color: #FEFEFE;padding: 50px;border-radius: 20px;box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);width: calc(100% - 100px);margin: 0 auto;z-index: 1; position: relative; }
+  .course-wrap {background-color: #FEFEFE;padding: 50px;border-radius: 20px;box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);width: calc(100% - 100px);margin: 0 auto;z-index: 1;}
   .course-wrap .field button {
       line-height: 61px;
       width: 100%;
@@ -453,18 +458,32 @@
   .customCheck input:checked ~ .checkmark:after { display: block; }
   .customCheck .checkmark:after {left: 9px;top: 5px;width: 5px;height: 10px;border: solid white;border-width: 0 3px 3px 0;-webkit-transform: rotate(45deg);-ms-transform: rotate(45deg);transform: rotate(45deg);}
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /*Register CSS*/
+  .rgfield{text-align: left;}
+  .rgfield label{text-align: left;padding: 0 0 12px 0;}
+  .rgfield input{height: 50px;padding: 15px 0;}
+  .rd-field {
+      padding: 0 0 10px 0;
+  }
   /* Responsive
   ------------------------------------*/
   @media only screen and (min-width: 1200px){
        .container {    max-width: 1280px;}
   }
   
-  @media only screen and (max-width: 1366px){
-  
-      ul.main-slider { max-width: 450px; }
-  
-  
-  }
+  @media only screen and (max-width: 1366px){}
   @media (min-width:1170px) and (max-width: 1281px) {
       .awar-wrap, .award-text p {width: 100%;}
       .about:before {left: 0;}
@@ -707,7 +726,7 @@
       padding: 25px;
   }
   .inner-text h1, .inner-text h3 {
-      /* color: var(--blck); */ text-shadow: 0 0 10px black;
+      color: var(--blck);
   }
   .click-btn:before {left: -17px;}
   .course-wrap{width: 100%;}
@@ -727,6 +746,6 @@
   }
   @media (max-width: 320px) {}
   
-  
-  
-  
+  .d_none{
+      display: none;
+  }

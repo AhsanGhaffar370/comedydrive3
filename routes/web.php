@@ -24,12 +24,17 @@ Auth::routes();
 
 // });
 
-Route::get('/', [FrontController::class, 'index'])->name('home');
-Route::get('/home', [FrontController::class, 'index'])->name('home');
+Route::get('/', [FrontController::class, 'index']);
+
+Route::group(['middleware'=>['login_control']],function(){
+    Route::get('/home', [FrontController::class, 'index'])->name('home');
+});
+
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
 Route::get('/course', [FrontController::class, 'course'])->name('course');
-Route::get('/get_enrolled', [FrontController::class, 'get_enrolled'])->name('get_enrolled');
+Route::get('/get-enrolled', [FrontController::class, 'get_enrolled'])->name('get-enrolled');
 Route::get('/question', [FrontController::class, 'question'])->name('question');
+// Route::get('/register', [FrontController::class, 'register'])->name('register');
 
 Route::group(['middleware'=>['student_auth']],function(){
     Route::get('/student-courses', [FrontController::class, 'student_courses'])->name('student-courses');

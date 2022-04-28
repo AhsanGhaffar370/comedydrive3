@@ -50,6 +50,9 @@ class Kernel extends HttpKernel
         'student_auth' => [
             \App\Http\Middleware\StudentAuth::class,
         ],
+        'login_control' => [
+            \App\Http\Middleware\LoginMiddleware::class,
+        ],
     ];
 
     /**
