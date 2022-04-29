@@ -43,7 +43,7 @@
                   </li>
                </ul>
             </div>
-            <a href="">
+            <a href="{{ route('get-enrolled') }}">
                <div class="main-text wow fadeInDown" data-wow-delay="0.3s">
                   <div class="ylw-sd">
                      <h2>Ready To Sign Up?</h2>

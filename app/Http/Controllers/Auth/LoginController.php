@@ -31,7 +31,17 @@ class LoginController extends Controller
      */
     // protected $redirectTo = RouteServiceProvider::HOME;
    
-   
+    public function redirectTo()
+    {
+        if (Auth::user()->role_id == 1) {
+            return route( 'admin.dashboard' );
+        }
+        else if (Auth::user()->role_id == 2) {
+            return route( 'home' );
+        } else {
+            return route( 'login' );
+        }
+    }
     
     /**
      * Create a new controller instance.
@@ -42,6 +52,7 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    
     public function logout(Request $request)
     {
         Auth::logout();

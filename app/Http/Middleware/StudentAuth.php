@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StudentAuth
 {
@@ -16,11 +17,10 @@ class StudentAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->check() && !auth()->user()->role_id == 2) {
-            
-            return redirect()->to( '/auth/login' );
+        if (Auth::check() && Auth::user()->role_id == 1) {
+            return $next($request);
+        } else {
+            return redirect()->to( 'login' );
         }
-        
-        return $next($request);
     }
 }

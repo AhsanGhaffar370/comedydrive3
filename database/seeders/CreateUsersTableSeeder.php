@@ -21,15 +21,13 @@ class CreateUsersTableSeeder extends Seeder
                 'email' => 'admin@admin.com',
                 'password' => bcrypt('admin123123'),
                 'role_id' => 1,
-                'status' => 1,
-                'step' => 2
+                'status' => 1
             ],
             [ // 1
                 'email' => 'student@student.com',
                 'password' => bcrypt('student123'),
                 'role_id' => 2,
-                'status' => 1,
-                'step' => 2
+                'status' => 1
             ]
         ]);
     }

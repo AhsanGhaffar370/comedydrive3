@@ -30,7 +30,7 @@
                             <li><a href="{{ route('admin.dashboard') }}">Admin Dashboard</a></li>
                             <li><a href="{{ route('logout') }}">Logout</a></li>
                         @endif
-                        (@cannot('admin'))
+                        (@cannot('student'))
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('get-enrolled') }}">Register</a></li>
                         @endif

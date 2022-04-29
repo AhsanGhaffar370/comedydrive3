@@ -24,11 +24,11 @@ Auth::routes();
 
 // });
 
-Route::get('/', [FrontController::class, 'index']);
+Route::get('/', [FrontController::class, 'index'])->name('home');
 
-Route::group(['middleware'=>['login_control']],function(){
-    Route::get('/home', [FrontController::class, 'index'])->name('home');
-});
+// Route::group(['middleware'=>['login_control']],function(){
+    // Route::get('/home', [FrontController::class, 'index'])->name('home');
+// });
 
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
 Route::get('/course', [FrontController::class, 'course'])->name('course');

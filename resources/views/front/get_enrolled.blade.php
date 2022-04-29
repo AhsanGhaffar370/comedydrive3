@@ -6,6 +6,19 @@
 
 <section class="entrolled-sec">
       <div class="container">
+        @if ($errors->any())
+          <div class = 'alert alert-danger' role="alert">
+            <h5 class="alert-heading">Something went wrong!</h5>
+            <hr>
+            <div class="alert-body">
+              <ul>
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+          </div>
+        @endif
         <div class="contact-text">
           <div class="question-hd">
             <h1>Registration</h1>
@@ -17,50 +30,79 @@
           <div class="row">
             <div class="col-md-12">
               <div class="field">
-                <select name="state_id" id="state_id" required>
+                <select name="state_id" id="state_id" >
                   <option value="" selected disabled>Select State*</option>
-                  <option value="1">from1</option>
-                  <option value="2">from2</option>
-                  <option value="3">from3</option>
+                  <option value="1">State1</option>
+                  <option value="2">State2</option>
+                  <option value="3">State3</option>
                 </select>
               </div>
               <div class="field">
-                <select name="course_id" id="course_id" required>
+                <select name="course_id" id="course_id" >
                   <option value="" selected disabled>Select Course*</option>
-                  <option value="1">from1</option>
-                  <option value="2">from2</option>
-                  <option value="3">from3</option>
+                  <option value="1">Course1</option>
+                  <option value="2">Course2</option>
+                  <option value="3">Course3</option>
                 </select>
               </div>
               <div class="field">
-                <select name="county_id" id="county_id" required>
+                <select name="county_id" id="county_id" >
                   <option value="" selected disabled>Select County/Court*</option>
-                  <option value="1">from1</option>
-                  <option value="2">from2</option>
-                  <option value="3">from3</option>
+                  <option value="1">County1</option>
+                  <option value="2">County2</option>
+                  <option value="3">County3</option>
                 </select>
               </div>
-              
+              <br><br>
               <div class="field">
-                <img src="assets/images/captcha.png" alt="">
+                <img src="assets/images/case_number.jpg" alt="">
+              </div>
+              <div class="field">
+                <input type="text" placeholder="Case Number" name="case_number" >
+              </div>
+
+              <br><br>
+              <div class="field">
+                <img src="assets/images/citation.jpg" alt="">
               </div>
 
               <div class="field">
-                <input onkeypress="return onlyNum(event)" maxlength="12" type="text" placeholder="Citation/Ticket Number" name="citation_number" required>
+                <input type="text" placeholder="Citation/Ticket Number" name="citation_number" >
               </div>
 
-              <div class="field">
-                <input onkeypress="return onlyNum(event)" maxlength="12" type="date" placeholder="Citation Date" name="citation_due_date" required>
+              <div class="row">
+              <div class="col-md-6">
+                <div class="field">
+                <p for="">Citation Date*</p>
+                  <input type="date" placeholder="Citation Date" name="citation_due_date" >
+                </div>
               </div>
 
-              <div class="field">
-                <input onkeypress="return onlyNum(event)" maxlength="12" type="date" placeholder="Court Due Date" name="citation_court_due_date" required>
-              </div>
+              <div class="col-md-6">
+                <div class="field">
+                <p for="">Court Due Date*</p>
+                  <input type="date" placeholder="Court Due Date" name="citation_court_due_date" >
+                </div>
+              </div></div>
             </div>
             <div class="col-md-12">
               <div class="field">
                 <label for="">Completion Certificate Delivery Options*</label>
               </div>
+              <div class="field">
+                <h5>Free Email Delivery! (at course completion)</h5>
+            </div>
+              <br>
+              
+              <div class="rd-field">
+                <input type="radio" id="course_completion_certificate_price_id" name="course_completion_certificate_price" value="2.50">
+                <label for="course_completion_certificate_price_id">Regular Mail ($2.50) - Typical 3-7 Day **Cheapest**</label><br>
+                <div class="field">
+                  <h5>Hard copy of certificate sent via first class mail from Houston TX.</h5>
+                </div>
+              </div>
+              <br>
+
               <div class="rd-field">
                 <input type="radio" id="course_completion_certificate_price_id" name="course_completion_certificate_price" value="5.50">
                 <label for="course_completion_certificate_price_id">Immediate Download/Email ($5.50) **Most Popular**</label><br>
@@ -83,12 +125,12 @@
             </div>
             <div class="col-md-6">
               <div class="field">
-            <input type="email" placeholder="Email" name="email" required>
+            <input id="email" type="email" name="email" value="{{ old('email') }}" required >
           </div>
             </div>
             <div class="col-md-6">
               <div class="field">
-            <input type="password" placeholder="Password" name="password" required>
+            <input type="password" placeholder="Password" name="password" >
           </div>
             </div>
              <div class="col-md-12">
@@ -104,11 +146,9 @@
             </div>
              <div class="col-md-12">
               <div class="field">
-            <select name="payment_type" id="payment_type" required>
-                  <option value="" selected disabled>Select Payment Type*</option>
-              <option value="1">Payment1</option>
-              <option value="2">Payment2</option>
-              <option value="3">Payment3</option>
+            <select name="payment_type" id="payment_type" >
+              <option value="" selected disabled>Select Payment Type*</option>
+              <option value="check">Paying by Check</option>
             </select>
           </div>
             </div>
@@ -119,7 +159,7 @@
             </div>
               <div class="col-md-6">
               <div class="field">
-            <select name="card_type" id="card_type" required>
+            <select name="card_type" id="card_type" >
               <option value="" selected disabled>Select Card Type*</option>
               <option value="1">Card1</option>
               <option value="2">Card2</option>
@@ -129,22 +169,22 @@
             </div>
             <div class="col-md-6">
                 <div class="field">
-                  <input onkeypress="return onlyNum(event)" maxlength="12" type="text" placeholder="Card Number" name="card_number" required>
+                  <input type="text" placeholder="Card Number" name="card_number" >
                 </div>
             </div>
                 <div class="col-md-6">
                 <div class="field">
-                           <input type="text" placeholder="Name on Card" name="card_name" required>
+                           <input type="text" placeholder="Name on Card" name="card_name" >
                         </div>
             </div>
                 <div class="col-md-6">
                 <div class="field">
-                           <input onkeypress="return onlyNum(event)" maxlength="12" type="text" placeholder="Card Verification Code" name="card_code" required>
+                           <input type="text" placeholder="Card Verification Code" name="card_code" >
                         </div>
             </div>
                <div class="col-md-6">
               <div class="field">
-            <select name="card_expiry_month" id="card_expiry_month" required>
+            <select name="card_expiry_month" id="card_expiry_month" >
               <option value="" selected disabled>Select Expiry Month*</option>
               <option value="1">Month1</option>
               <option value="2">Month2</option>
@@ -154,7 +194,7 @@
             </div>
                <div class="col-md-6">
               <div class="field">
-            <select name="card_expiry_date" id="card_expiry_date" required>
+            <select name="card_expiry_date" id="card_expiry_date" >
               <option value="" selected disabled>Select Expiry Date*</option>
               <option value="1">Date1</option>
               <option value="2">Date2</option>
@@ -164,7 +204,7 @@
             </div>
             <div class="col-md-12">
               <div class="field">
-                <input onkeypress="return onlyNum(event)" maxlength="12" type="text" placeholder="Billing Zipcode" name="card_zipcode" required>
+                <input type="text" placeholder="Billing Zipcode" name="card_zipcode" >
               </div>
             </div>
           </div>

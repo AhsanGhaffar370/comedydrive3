@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\State;
+use App\Models\Course;
+use App\Models\County;
+use App\Models\User;
+use App\Models\StudentDetail;
+use App\Models\Role;
+use App\Models\CourseDetail;
 use Auth;
 
 class FrontController extends Controller
@@ -39,7 +46,11 @@ class FrontController extends Controller
     
     public function get_enrolled()
     {
-        return view('front/get_enrolled');
+        $states = State::all();
+        $courses = Course::all();
+        $counties = County::all();
+
+        return view('front/get_enrolled', ['states' => $states, 'courses' => $courses, 'counties' => $counties]);
     }
     
     public function question()
