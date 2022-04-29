@@ -37,9 +37,9 @@ class LoginController extends Controller
             return route( 'admin.dashboard' );
         }
         else if (Auth::user()->role_id == 2) {
-            return route( 'home' );
+            return route( 'get_enrolled_step2' );
         } else {
-            return route( 'login' );
+            return route( 'course' );
         }
     }
     

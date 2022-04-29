@@ -1,4 +1,45 @@
 $(document).ready(function() {
+
+  function payment_function() {
+    if ($("select[name='payment_type']").length && $("select[name='payment_type']").val() == 'check') {
+      $(".card_info_div").addClass('d_none');
+      $(".card_info_div input, .card_info_div select").removeAttr('required');
+      $(".check_info_div").removeClass('d_none');
+      $(".check_info_div input, .check_info_div select").attr('required', 'required');
+    } 
+    else if ($("select[name='payment_type']").length && $("select[name='payment_type']").val() == 'card') {
+      
+      $(".card_info_div").removeClass('d_none');
+      $(".card_info_div input, .card_info_div select").attr('required', 'required');
+      $(".check_info_div").addClass('d_none');
+      $(".check_info_div input, .check_info_div select").removeAttr('required');
+    } 
+  }
+  payment_function();
+  $(document).on('change', "select[name='payment_type']", function(e) {
+    payment_function();
+  });
+
+  $(document).on('change', "select[name='state_id']", function(e) {
+    $(".course_completion").removeClass("d_none");
+
+    if ($("select[name='state_id']").length && $("select[name='state_id']").val() == '1') { // florida
+      $(".florida_course_completion").removeClass('d_none');
+      $(".mexico_course_completion").addClass('d_none');
+      $(".texas_course_completion").addClass('d_none');
+    } 
+    else if ($("select[name='state_id']").length && $("select[name='state_id']").val() == '2') { // mexico
+      $(".florida_course_completion").addClass('d_none');
+      $(".mexico_course_completion").removeClass('d_none');
+      $(".texas_course_completion").addClass('d_none');    
+    } 
+    else if ($("select[name='state_id']").length && $("select[name='state_id']").val() == '3') { // texas
+      $(".florida_course_completion").addClass('d_none');
+      $(".mexico_course_completion").addClass('d_none');
+      $(".texas_course_completion").removeClass('d_none');    
+    } 
+  });
+
     $("li:first-child").addClass("first");
     $("li:last-child").addClass("last");
     $('[href="#"]').attr("href", "javascript:;");

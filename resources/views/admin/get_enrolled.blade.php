@@ -121,7 +121,7 @@
           
          
           <div class="field">
-            <img src="assets/images/captcha.png" alt="">
+            <img src="{{asset('assets/images/captcha.png')}}" alt="">
           </div>
 
                  <div class="col-md-12">

@@ -7,16 +7,16 @@
 <div class="mainBanner">
          <div class="container">
                     <div class="puzzle  wow fadeInDown" data-wow-delay="0.9s">
-               <img src="assets/images/puzzle.png" alt="">
+               <img src="{{asset('assets/images/puzzle.png')}}" alt="">
                </div>
                <div class="board  wow fadeInDown" data-wow-delay="0.6s">
-               <img src="assets/images/sign-board.png" alt="">
+               <img src="{{asset('assets/images/sign-board.png')}}" alt="">
                </div>
                    <div class="aplus  wow fadeInDown" data-wow-delay="0.9s">
-               <img src="assets/images/a-plus.png" alt="">
+               <img src="{{asset('assets/images/a-plus.png')}}" alt="">
                </div>
                <div class="look  wow fadeInDown" data-wow-delay="0.6s">
-               <img src="assets/images/sitelook.png" alt="">
+               <img src="{{asset('assets/images/sitelook.png')}}" alt="">
                </div>
                <ul class="bn-socail">
                 <li><a href="#"><i class="fab fa-youtube"></i></a></li>
@@ -30,20 +30,20 @@
             <div class="slider-wrap">
                <ul class="main-slider">
                   <li>
-                     <img src="assets/images/slider1.png" alt="">
+                     <img src="{{asset('assets/images/slider1.png')}}" alt="">
                   </li>
                   <li>
-                     <img src="assets/images/slider2.png" alt="">
+                     <img src="{{asset('assets/images/slider2.png')}}" alt="">
                   </li>
                   <li>
-                     <img src="assets/images/slider3.png" alt="">
+                     <img src="{{asset('assets/images/slider3.png')}}" alt="">
                   </li>
                   <li>
-                     <img src="assets/images/slider4.png" alt="">
+                     <img src="{{asset('assets/images/slider4.png')}}" alt="">
                   </li>
                </ul>
             </div>
-            <a href="{{ route('get-enrolled') }}">
+            <a href="{{ route('get_enrolled') }}">
                <div class="main-text wow fadeInDown" data-wow-delay="0.3s">
                   <div class="ylw-sd">
                      <h2>Ready To Sign Up?</h2>
@@ -77,7 +77,7 @@
                <div class="col-md-4 wow fadeInDown" data-wow-delay="0.2s">
                   <div class="bonus-wrap">
                      <a data-fancybox="gallery" href="https://www.youtube.com/embed/r5jRx0IPwlQ?wmode=transparent">
-                     <img src="assets/images/tricky.png" alt="">
+                     <img src="{{asset('assets/images/tricky.png')}}" alt="">
                      <i class="fa fa-play" aria-hidden="true"></i>
                      </a>
                   </div>
@@ -85,7 +85,7 @@
                <div class="col-md-4 wow fadeInDown" data-wow-delay="0.4s">
                   <div class="bonus-wrap">
                      <a  data-fancybox="gallery" href="https://www.youtube.com/embed/nJm1TVLQZy0?wmode=transparent">
-                     <img src="assets/images/deflate.png" alt="">
+                     <img src="{{asset('assets/images/deflate.png')}}" alt="">
                      <i class="fa fa-play" aria-hidden="true"></i>
                      </a>
                   </div>
@@ -93,7 +93,7 @@
                <div class="col-md-4 wow fadeInDown" data-wow-delay="0.6s">
                   <div class="bonus-wrap">
                      <a  data-fancybox="gallery" href="https://e6773fd67ca9493db6f7-7d27904e4c091ec2edfe18aea818b87b.ssl.cf1.rackcdn.com/BBEmergenciesMed_x264.mp4">
-                     <img src="assets/images/bill.png" alt="">
+                     <img src="{{asset('assets/images/bill.png')}}" alt="">
                      <i class="fa fa-play" aria-hidden="true"></i>
                      </a>
                   </div>
@@ -114,22 +114,22 @@
             <div class="row mob-service">
                <div class="col-md-3 wow fadeInLeft" data-wow-delay="0.1s">
                   <div class="insta-img">
-                     <img src="assets/images/insta1.png" alt="">
+                     <img src="{{asset('assets/images/insta1.png')}}" alt="">
                   </div>
                </div>
                <div class="col-md-3 wow fadeInLeft" data-wow-delay="0.3s">
                   <div class="insta-img">
-                     <img src="assets/images/insta2.png" alt="">
+                     <img src="{{asset('assets/images/insta2.png')}}" alt="">
                   </div>
                </div>
                <div class="col-md-3 wow fadeInRight" data-wow-delay="0.5s">
                   <div class="insta-img">
-                     <img src="assets/images/insta3.png" alt="">
+                     <img src="{{asset('assets/images/insta3.png')}}" alt="">
                   </div>
                </div>
                <div class="col-md-3 wow fadeInRight" data-wow-delay="0.7s">
                   <div class="insta-img">
-                     <img src="assets/images/insta4.png" alt="">
+                     <img src="{{asset('assets/images/insta4.png')}}" alt="">
                   </div>
                </div>
             </div>
@@ -145,7 +145,7 @@
             <div class="row mob-service">
                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 wow fadeInDown" data-wow-delay="0.2s">
                   <div class="awar-wrap">
-                     <img src="assets/images/icon1.png" alt="">
+                     <img src="{{asset('assets/images/icon1.png')}}" alt="">
                      <div class="award-text">
                         <h5>FINISH FAST</h5>
                         <p>Shortest Course Available</p>
@@ -154,7 +154,7 @@
                </div>
                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 wow fadeInDown" data-wow-delay="0.4s">
                   <div class="awar-wrap">
-                     <img src="assets/images/icon2.png" alt="">
+                     <img src="{{asset('assets/images/icon2.png')}}" alt="">
                      <div class="award-text">
                         <h5>DRIVING RECORD</h5>
                         <p>Certified Records Available</p>
@@ -163,7 +163,7 @@
                </div>
                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 wow fadeInDown" data-wow-delay="0.6s">
                   <div class="awar-wrap">
-                     <img src="assets/images/icon3.png" alt="">
+                     <img src="{{asset('assets/images/icon3.png')}}" alt="">
                      <div class="award-text">
                         <h5>EASY ONLINE PAYMENT</h5>
                         <p>Multiple Online Payment Options</p>
@@ -172,7 +172,7 @@
                </div>
                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 wow fadeInDown" data-wow-delay="0.8s">
                   <div class="awar-wrap">
-                     <img src="assets/images/icon4.png" alt="">
+                     <img src="{{asset('assets/images/icon4.png')}}" alt="">
                      <div class="award-text">
                         <h5>CUSTOMER SERVICE</h5>
                         <p>We Love To Answer Your Questions</p>
@@ -181,7 +181,7 @@
                </div>
                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 wow fadeInDown" data-wow-delay="1s">
                   <div class="awar-wrap">
-                     <img src="assets/images/icon5.png" alt="">
+                     <img src="{{asset('assets/images/icon5.png')}}" alt="">
                      <div class="award-text">
                         <h5>USE ANY DEVICE</h5>
                         <p>Watch On Your Schedule</p>
@@ -190,7 +190,7 @@
                </div>
                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 wow fadeInDown" data-wow-delay="1.2s">
                   <div class="awar-wrap">
-                     <img src="assets/images/icon6.png" alt="">
+                     <img src="{{asset('assets/images/icon6.png')}}" alt="">
                      <div class="award-text">
                         <h5>AWARD WINNING COURSE</h5>
                         <p></p>
@@ -215,7 +215,7 @@
                <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 wow fadeInDown" data-wow-delay="0.2s">
                   <div class="blog-wrap">
                      <div class="blog-img">
-                        <img src="assets/images/blog1.png" alt="">
+                        <img src="{{asset('assets/images/blog1.png')}}" alt="">
                         <div class="blog-tag">
                            <h4>25</h4>
                            <h5>aug</h5>
@@ -233,7 +233,7 @@
                <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 wow fadeInDown" data-wow-delay="0.4s">
                   <div class="blog-wrap">
                      <div class="blog-img">
-                        <img src="assets/images/blog2.png" alt="">
+                        <img src="{{asset('assets/images/blog2.png')}}" alt="">
                         <div class="blog-tag">
                            <h4>25</h4>
                            <h5>aug</h5>
@@ -251,7 +251,7 @@
                <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 wow fadeInDown" data-wow-delay="0.6s">
                   <div class="blog-wrap">
                      <div class="blog-img">
-                        <img src="assets/images/blog3.png" alt="">
+                        <img src="{{asset('assets/images/blog3.png')}}" alt="">
                         <div class="blog-tag">
                            <h4>25</h4>
                            <h5>aug</h5>
@@ -269,7 +269,7 @@
                <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 wow fadeInDown" data-wow-delay="0.8s">
                   <div class="blog-wrap">
                      <div class="blog-img">
-                        <img src="assets/images/blog4.png" alt="">
+                        <img src="{{asset('assets/images/blog4.png')}}" alt="">
                         <div class="blog-tag">
                            <h4>25</h4>
                            <h5>aug</h5>
@@ -318,23 +318,23 @@
             </div>
             <ul class="serv mob-service">
                <li class="wow fadeInUp" data-wow-delay="0.2s" >
-                  <div class="serv-img"> <img src="assets/images/icon7.png" alt=""></div>
+                  <div class="serv-img"> <img src="{{asset('assets/images/icon7.png')}}" alt=""></div>
                   <p>State and Court Approved for Traffic Ticket Dismissal.</p>
                </li >
                <li class="wow fadeInUp" data-wow-delay="0.4s">
-                  <div class="serv-img"> <img src="assets/images/icon8.png" alt=""></div>
+                  <div class="serv-img"> <img src="{{asset('assets/images/icon8.png')}}" alt=""></div>
                   <p>State Approved for Insurance Premium Discount.</p>
                </li>
                <li class="wow fadeInUp" data-wow-delay="0.6s">
-                  <div class="serv-img"> <img src="assets/images/icon9.png" alt=""></div>
+                  <div class="serv-img"> <img src="{{asset('assets/images/icon9.png')}}" alt=""></div>
                   <p>Download your certificate.</p>
                </li>
                <li class="wow fadeInUp" data-wow-delay="0.8s">
-                  <div class="serv-img">  <img src="assets/images/icon10.png" alt=""></div>
+                  <div class="serv-img">  <img src="{{asset('assets/images/icon10.png')}}" alt=""></div>
                   <p>Start and Stop the Course any time.</p>
                </li>
                <li class="wow fadeInUp" data-wow-delay="1s">
-                  <div class="serv-img">  <img src="assets/images/icon11.png" alt=""></div>
+                  <div class="serv-img">  <img src="{{asset('assets/images/icon11.png')}}" alt=""></div>
                   <p>#1 Rated Course Since 2000.</p>
                </li>
             </ul>

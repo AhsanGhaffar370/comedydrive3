@@ -102,7 +102,7 @@
   .mn-hd p{}
   
   /* header CSS */
-  header{-webkit-transition:all 0.4s ease-In-out;-moz-transition:all 0.4s ease-In-out;-o-transition:all 0.4s ease-In-out;transition:all 0.4s ease-In-out;}
+  header{-webkit-transition:all 0.4s ease-In-out;-moz-transition:all 0.4s ease-In-out;-o-transition:all 0.4s ease-In-out;transition:all 0.4s ease-In-out;position: relative;z-index: 1;}
   .main-header{
       padding: 20px 0 0;
       background-color: #FEFEFE;
@@ -152,7 +152,7 @@
   .menu-Bar.open span:nth-child(3){transform:rotate(-45deg);top:12px;transform-origin:right-center;}
   
   /* Main Banner CSS */
-  .mainBanner{background-image: url(../images/banner/bg-banner3.jpg);background-size:cover;background-position:center;height:100vh;background-repeat:no-repeat;display:flex;align-items:center;position:relative;z-index: -1;}
+  .mainBanner{background-image: url(../images/banner/bg-banner3.jpg);background-size:cover;background-position:center;height:100vh;background-repeat:no-repeat;display:flex;align-items:center;position:relative;z-index: 1;}
   .puzzle {position: absolute;left: 14%;top: 7%;}
   .aplus{position: absolute;right: 5%;top: 7%;}
   .board {position: absolute;left: 26%;bottom: 30%;}
@@ -386,8 +386,8 @@
   
   
   /*Re Enter*/
-  .mainBanner.renter:after {content: '';position: absolute;height: 720px;width: 1440px;background-image: url(../images/curve.png);bottom: -2px;left: 0px;}
-  .course-wrap {background-color: #FEFEFE;padding: 50px;border-radius: 20px;box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);width: calc(100% - 100px);margin: 0 auto;z-index: 1;}
+  .mainBanner.renter:after {content: '';position: absolute;height: 720px;width: 1440px;background-image: url(../images/curve.png);bottom: -2px;left: 0px;z-index: -1;}
+  .course-wrap {background-color: #FEFEFE;padding: 50px;border-radius: 20px;box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);width: calc(100% - 100px);margin: 0 auto;z-index: 14;}
   .course-wrap .field button {
       line-height: 61px;
       width: 100%;
@@ -477,6 +477,60 @@
   .rd-field {
       padding: 0 0 10px 0;
   }
+  
+  
+  
+  /*Resume Course*/
+  .bar-land {
+      padding: 20px;
+      background: #4f55b2;
+      margin: 100px 0 20px;
+      border-radius: 10px;
+  }
+  .bar-hd h3 {
+      font-size: 40px;
+      text-transform: uppercase;
+      color: #fff;
+      font-weight: 700;
+      padding: 0 0 20px 0;
+  }
+  ul.courses {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+  }
+  ul.courses li {}
+  ul.courses li a {
+      font-size: 17px;
+      color: #fff;
+      line-height: 27px;
+  }
+  ul.courses li a:hover {color: #000;}
+  .progress {
+      margin: 0 0 17px 0;
+  }
+  .timer {
+      padding: 20px;
+      background: #4f55b2;
+      width: calc(100% - 717px);
+      margin: 0 auto 20px;
+      border-radius: 10px;
+  }
+  .timer h4 {
+      font-size: 30px;
+      color: #fff;
+  }
+  .timer span {color: var(--lg-purple);padding: 15px;background-color: #fff;margin: 0 0 0 10px;border-radius: 5px;}
+  .intro-wrap {
+      padding: 50px;
+      border: 10px solid #4f55b2;
+      border-radius: 20px;
+      text-align: center;
+      margin: 0 0 30px 0;
+  }
+  .intro-wrap img {padding: 0 0 30px 0;}
+  .intro-wrap p {text-align: left;}
+  .bar-land p{color: #fff;font-size: 20px;text-align: center;}
   /* Responsive
   ------------------------------------*/
   @media only screen and (min-width: 1200px){
@@ -746,6 +800,8 @@
   }
   @media (max-width: 320px) {}
   
-  .d_none{
+  .d_none {
       display: none;
   }
+  
+  

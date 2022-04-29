@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class RegisterController extends Controller
 {
@@ -33,27 +34,27 @@ class RegisterController extends Controller
      */
     // protected $redirectTo = RouteServiceProvider::HOME;
     
-    public function redirectTo()
-    {
-        if (Auth::user()->role_id == 1) {
-            return route( 'admin.dashboard' );
-        }
-        else if (Auth::user()->role_id == 2) {
-            return route( 'home' );
-        } else {
-            return route( 'login' );
-        }
-    }
+    // public function redirectTo()
+    // {
+    //     if (Auth::user()->role_id == 1) {
+    //         return route( 'admin.dashboard' );
+    //     }
+    //     else if (Auth::user()->role_id == 2) {
+    //         return route( 'get_enrolled_step2' );
+    //     } else {
+    //         return route( 'login' );
+    //     }
+    // }
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('guest');
+    // }
 
     /**
      * Get a validator for an incoming registration request.
@@ -64,9 +65,23 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'state_id' => ['required'],
+            'course_id' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8'],
+            'payment_type' => ['required'],
+            'card_type' => ['required_if:payment_type,card'],
+            'card_number' => ['required_if:payment_type,card'],
+            'card_name' => ['required_if:payment_type,card'],
+            'card_code' => ['required_if:payment_type,card'],
+            'card_expiry_month' => ['required_if:payment_type,card'],
+            'card_expiry_date' => ['required_if:payment_type,card'],
+            'bank_name' => ['required_if:payment_type,check'],
+            'bank_account_name' => ['required_if:payment_type,check'],
+            'bank_checking_account_no' => ['required_if:payment_type,check'],
+            'bank_account_routing_no' => ['required_if:payment_type,check'],
+            'bank_account_type' => ['required_if:payment_type,check'],
+            'billing_zipcode' => ['required'],
         ]);
     }
 
@@ -78,36 +93,98 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        dd($data);
-        $user = User::create([
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'role_id' => 2,
-            'status' => 1
-        ]);
+        
+        try{
+            $user = null;
+            $student_details = null;
 
-        $student_details = StudentDetail::create([
-            'state_id' => $data['state_id'],
-            'course_id' => $data['course_id'],
-            'county_id' => $data['county_id'],
-            'case_number' => $data['case_number'],
-            'citation_number' => $data['citation_number'],
-            'citation_due_date' => $data['citation_due_date'],
-            'citation_court_due_date' => $data['citation_court_due_date'],
-            'course_completion_certificate_price' => $data['course_completion_certificate_price'],
-            
-            'payment_type' => $data['payment_type'],
-            'bank_name' => $data['bank_name'],
-            'bank_account_name' => $data['bank_account_name'],
-            'bank_account_no' => $data['bank_account_no'],
-            'bank_account_routing_no' => $data['bank_account_routing_no'],
-            'bank_account_type' => $data['bank_account_type'],
-            'billing_zipcode' => $data['billing_zipcode'],
-            'form_step' => '2',
-            'course_step' => '1.1',
-            'status' => '1',
-        ]);
+            // Rollback if data not inserted properly
+            DB::transaction(function () use ($data, &$user, &$student_details) {
+                $bank_name = null;
+                $bank_account_name = null;
+                $bank_checking_account_no = null;
+                $bank_account_routing_no = null;
+                $bank_account_type = null;
 
+                $status = 1;
+                if ($data['payment_type'] == 'card') {
+                    $card_type = $data['card_type'];
+                    $card_number = $data['card_number'];
+                    $card_name = $data['card_name'];
+                    $card_code = $data['card_code'];
+                    $card_expiry_month = $data['card_expiry_month'];
+                    $card_expiry_date = $data['card_expiry_date'];
+
+                    $status = 1;
+                } 
+                elseif ($data['payment_type'] == 'check') {
+                    $bank_name = $data['bank_name'];
+                    $bank_account_name = $data['bank_account_name'];
+                    $bank_checking_account_no = $data['bank_checking_account_no'];
+                    $bank_account_routing_no = $data['bank_account_routing_no'];
+                    $bank_account_type = $data['bank_account_type'];
+
+                }
+
+                $citation_number = null;
+                $citation_due_date = null;
+                $citation_court_due_date = null;
+                if ($data['state_id'] == '1' && $data['course_id'] == '1') {
+                    $citation_number = $data['citation_number'];
+                    $citation_due_date = $data['citation_due_date'];
+                    $citation_court_due_date = $data['citation_court_due_date'];
+                }
+
+                $case_number = null;
+                if ($data['state_id'] == '1' && $data['course_id'] == '2') {
+                    $case_number = $data['case_number'];
+                }
+
+                $course_completion_certificate_price = null;
+                if (isset($data['course_completion_certificate_price'])) {
+                    $course_completion_certificate_price = $data['course_completion_certificate_price'];
+                }
+                
+                $user = User::create([
+                    'email' => $data['email'],
+                    'password' => Hash::make($data['password']),
+                    'role_id' => 2,
+                    'status' => $status
+                ]);
+
+                $student_details = StudentDetail::create([
+                    'user_id' => $user->id,
+                    'state_id' => $data['state_id'],
+                    'course_id' => $data['course_id'],
+                    'county_id' => $data['county_id'],
+                    'case_number' => $case_number,
+                    'citation_number' => $citation_number,
+                    'citation_due_date' => $citation_due_date,
+                    'citation_court_due_date' => $citation_court_due_date,
+                    'course_completion_certificate_price' => $course_completion_certificate_price,
+                    
+                    'payment_type' => $data['payment_type'],
+                    'bank_name' => $bank_name,
+                    'bank_account_name' => $bank_account_name,
+                    'bank_checking_account_no' => $bank_checking_account_no,
+                    'bank_account_routing_no' => $bank_account_routing_no,
+                    'bank_account_type' => $bank_account_type,
+        
+                    'billing_zipcode' => $data['billing_zipcode'],
+                    'form_step' => '2',
+                    'course_step' => '1.1',
+                    'status' => '1',
+                ]);
+            });
+        } catch(\Exception $e) {
+            return redirect()->route('get_enrolled')
+                            ->with('error','Something went wrong');
+        }
+        
         return $user;
+        // if ($user && $student_details) {
+        // } else {
+        //     return redirect()->route('get_enrolled_step2')->with('error','Something went wrong');
+        // }
     }
 }

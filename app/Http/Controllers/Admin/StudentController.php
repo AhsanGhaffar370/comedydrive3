@@ -14,8 +14,9 @@ use App\Models\Role;
 class StudentController extends Controller
 {
     function list(){
-        $data = User::get();//present
+        $data = User::with(['studentDetail'])->get();//present
         // $count=1;
+        // dd($data);
 
         return view('admin/students/list',['data'=>$data,'count'=>1]);
     }
@@ -93,8 +94,8 @@ class StudentController extends Controller
     }
 
     function view($id){
-        $user=User::find($id);
-
+        $user=User::with(['studentDetail'])->find($id);
+        // dd($user->studentDetail);
         return view('admin/students/view',['user'=>$user,]);
     }
 

@@ -10,7 +10,7 @@
             <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                    <a href="#">
                         <div class="click-btn">
-                     <img src="assets/images/book.png" alt="">
+                     <img src="{{asset('assets/images/book.png')}}" alt="">
                      <div class="click-text">
                         <h2>CLICK HERE</h2>
                         <p>If you are not currently Enrolled</p>

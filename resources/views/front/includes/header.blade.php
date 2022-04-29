@@ -12,7 +12,7 @@
 			<div class="row align-items-center">
 				<div class="col-md-3 text-center">
 					<a href="./" class="logo">
-					<img src="assets/images/logo.png" alt="">
+					<img src="{{asset('assets/images/logo.png')}}" alt="">
 					</a>
 				</div>
 				<div class="col-md-9">
@@ -23,16 +23,11 @@
                         <li><a href="{{ route('contact') }}">Contact Us</a></li>
                         <li><a href="{{ route('course') }}">Re-Enter Course</a></li>
                         @can('student')
-                            <li><a href="{{ route('student-courses') }}">Student Course</a></li>
-                            <li><a href="{{ route('logout') }}">Logout</a></li>
-                        @endif
-                        @can('admin')
-                            <li><a href="{{ route('admin.dashboard') }}">Admin Dashboard</a></li>
+                            <li><a href="{{ route('get_enrolled_courses') }}">Resume Course</a></li>
                             <li><a href="{{ route('logout') }}">Logout</a></li>
                         @endif
                         (@cannot('student'))
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('get-enrolled') }}">Register</a></li>
+                            <li><a href="{{ route('get_enrolled') }}">Register</a></li>
                         @endif
 					</ul>
 					</div>

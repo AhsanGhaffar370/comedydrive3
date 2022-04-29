@@ -1,73 +1,70 @@
-@extends('layouts.app')
+@extends('front/layout/layout')
+
+@section('page_title','| Courses')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+<div class="mainBanner renter">
+         <div class="container">
+         <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                   <a href="#">
+                        <div class="click-btn">
+                     <img src="{{asset('assets/assets/images/book.png')}}" alt="">
+                     <div class="click-text">
+                        <h2>CLICK HERE</h2>
+                        <p>If you are not currently Enrolled</p>
+                     </div>
+                  </div>
+                  </a>
+               <div class="notice-wrap">
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                   <div class="notice-hd">
+                  <h1>NOTICE:</h1>
+                  <div class="notice-text">
+                     <p>The use, publication, transmission, copying,reproduction, distribution, dissemination, sale,participation in the transfer or sale, and/or any other unauthorized use or appropriation of all or any portion or part of the training course and/or certification exam, by any means whatsoever (including but not limited to, through photographic or electronic means and/or technology) without Comedy Safe Driver's prior written authorization is prohibited and will result in appropriate legal measures being taken by Comedy Safe Driver. The modification, creation of a new work(s) from, display, or exploitation in any other way of all or any portion of Comedy Safe Driver's training and/or certification examination is also prohibited without Comedy Safe Driver's prior written authorization.</p>
+                  </div>
+               </div>
+               </div>
             </div>
-        </div>
-    </div>
-</div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+               <div class="course-wrap">
+               <div class="question-hd">
+                  <h1>Re-Enter Course</h1>
+                  <h4>But not while you’re driving!</h4>
+               </div>
+              
+
+               <form method="POST" action="{{ route('login') }}">
+                @csrf
+                  <div class="field">
+                      <input type="email" placeholder="Email" name="email" class="form-control @error('email') is-invalid @enderror" required autocomplete="email" autofocus>
+                      
+                      @error('email')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
+                  </div>
+                  <div class="field">
+                      <input type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                      
+                      @error('password')
+                        <span class="invalid-feedback" role="alert">
+                           <strong>{{ $message }}</strong>
+                        </span>
+                     @enderror
+                  </div>
+                     
+
+                         <div class="field">
+                        <button type="submit">Login</button>
+                        </div>
+               </form>
+            </div>
+            </div>
+         </div>
+         </div>
+         
+      </div>
 @endsection

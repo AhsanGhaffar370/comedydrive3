@@ -12,7 +12,7 @@
             </a>
         </div>
         <div class="clearfix"></div>
-        <br />
+        <br/>
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section mb-3">
             <h3 class="pt-2 pb-2 text-light bg_bl">Dashboard</h3>

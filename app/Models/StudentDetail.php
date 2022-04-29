@@ -11,6 +11,7 @@ class StudentDetail extends Model
     protected $table = 'student_details';
 
     protected $fillable = [
+        'user_id',
         'state_id',
         'course_id',
         'county_id',
@@ -22,7 +23,7 @@ class StudentDetail extends Model
         'payment_type', //payment
         'bank_name',
         'bank_account_name',
-        'bank_account_no',
+        'bank_checking_account_no',
         'bank_account_routing_no',
         'bank_account_type',
         'billing_zipcode',
@@ -46,4 +47,28 @@ class StudentDetail extends Model
         'course_step',
         'status',
     ];
+    
+    public function state() {
+        return $this->belongsTo(State::class, 'state_id'); // state_id is a fk column in this table.
+    }
+    
+    public function drivers_license_state() {
+        return $this->belongsTo(State::class, 'drivers_license_state_id'); // drivers_license_state_id is a fk column in this table.
+    }
+    
+    public function certificate_mailing_state() {
+        return $this->belongsTo(State::class, 'certificate_mailing_state_id'); // certificate_mailing_state_id is a fk column in this table.
+    }
+    
+    public function course() {
+        return $this->belongsTo(Course::class, 'course_id'); // course_id is a fk column in this table.
+    }
+    
+    public function county() {
+        return $this->belongsTo(County::class, 'county_id'); // county_id is a fk column in this table.
+    }
+    
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id'); // user_id is a fk column in this table.
+    }
 }

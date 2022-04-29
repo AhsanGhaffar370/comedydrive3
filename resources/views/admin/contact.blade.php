@@ -10,7 +10,7 @@
                <div class="question-hd">
                   <h1>Contact Us</h1>
                </div>
-              <img src="assets/images/map.png" alt="">
+              <img src="{{asset('assets/images/map.png')}}" alt="">
               <h3>Office Mailing Address:</h3>
               <p>Comedy Safe Driver 539 W Commerce St. #1266, Dallas, TX 75208</p>
               <h3>Phones:</h3>
@@ -33,7 +33,7 @@
                           <textarea name="textarea" placeholder="Message" ></textarea>
                         </div>
                         <div class="field">
-                           <img src="assets/images/captcha.png" alt="">
+                           <img src="{{asset('assets/images/captcha.png')}}" alt="">
                         </div>
 
                          <div class="field">

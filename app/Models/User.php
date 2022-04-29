@@ -46,4 +46,9 @@ class User extends Authenticatable
     public function scopeActive($query) {
         return $query->where('users.status', 1); // Active
     }
+
+    public function studentDetail() {
+        return $this->hasOne(StudentDetail::class, 'user_id')->with([ 'state', 'county', 'course']); // user_id is a fk column in this table.
+    }
+
 }

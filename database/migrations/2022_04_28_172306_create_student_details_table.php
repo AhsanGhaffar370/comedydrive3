@@ -29,7 +29,7 @@ class CreateStudentDetailsTable extends Migration
             $table->string('payment_type')->nullable(); 
             $table->string('bank_name')->nullable(); 
             $table->string('bank_account_name')->nullable(); 
-            $table->string('bank_account_no')->nullable(); 
+            $table->string('bank_checking_account_no')->nullable(); 
             $table->string('bank_account_routing_no')->nullable(); 
             $table->string('bank_account_type')->nullable(); 
             $table->string('billing_zipcode')->nullable(); 
@@ -41,14 +41,14 @@ class CreateStudentDetailsTable extends Migration
             $table->string('telephone')->nullable();
             $table->string('gender')->nullable();
             $table->date('dob')->nullable();
-            $table->integer('drivers_license_state_id'); // FK 
+            $table->integer('drivers_license_state_id')->nullable(); // FK 
             $table->string('drivers_license_number')->nullable();
             $table->string('license_plate_number')->nullable();
 
 
             $table->string('certificate_mailing_address')->nullable();
             $table->string('certificate_mailing_city')->nullable();
-            $table->integer('certificate_mailing_state_id'); // FK 
+            $table->integer('certificate_mailing_state_id')->nullable(); // FK 
             $table->string('certificate_mailing_zipcode')->nullable();
 
             $table->string('form_step')->default('1');

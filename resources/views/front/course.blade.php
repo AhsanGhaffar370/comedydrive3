@@ -10,7 +10,7 @@
             <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                    <a href="#">
                         <div class="click-btn">
-                     <img src="assets/images/book.png" alt="">
+                     <img src="{{asset('assets/images/book.png')}}" alt="">
                      <div class="click-text">
                         <h2>CLICK HERE</h2>
                         <p>If you are not currently Enrolled</p>
@@ -35,12 +35,25 @@
                </div>
               
 
-               <form action="#">
+               <form method="POST" action="{{ route('login') }}">
+                  @csrf
                   <div class="field">
-                      <input type="text" placeholder="Username" name="name" onkeydown="return /[a-z]/i.test(event.key)">
+                      <input type="email" placeholder="Email" name="email" class="form-control @error('email') is-invalid @enderror" required autocomplete="email" autofocus>
+                      
+                      @error('email')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
                   </div>
                   <div class="field">
-                      <input type="passwors" placeholder="Passwors" >
+                      <input type="password"  class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                      
+                      @error('password')
+                        <span class="invalid-feedback" role="alert">
+                           <strong>{{ $message }}</strong>
+                        </span>
+                     @enderror
                   </div>
                      
 

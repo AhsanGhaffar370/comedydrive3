@@ -12,10 +12,10 @@
 				<i class="fas fa-eye"></i><br>
 				<span class="size13">View All</span> 
 			</a>
-			<a href={{route('admin.students.add')}} class="btn btn-light border pt-2 pb-2 pl-3 pr-3">
+			{{--  <a href={{route('admin.students.add')}} class="btn btn-light border pt-2 pb-2 pl-3 pr-3">
 				<i class="fas fa-plus"></i><br>
 				<span class="size13">Add New</span> 
-			</a>
+			</a>  --}}
         </div>
     </div>
     <div class="clearfix"></div>
@@ -53,7 +53,7 @@
                                         <tr>
                                             <td>{{$count++}}</td>
                                             <td>{{$row->id}}</td>
-                                            <td>{{$row->name}}</td>
+                                            <td>{{$row->studentDetail->firstname ?? ''}}</td>
                                             <td>{{$row->email}}</td>
                                             
                                             <!-- <td>
@@ -74,10 +74,10 @@
                                                 <div class="btn-group" style="display: -webkit-box;">
                                                     <a href={{route('admin.students.view', ['id' => $row->id])}}
                                                         class="btn btn-success btn-sm ml-2 pt-1 pb-1 rounded"><i class="fas fa-solid fa-eye"></i></a>
-                                                    <a href={{route('admin.students.update', ['id' => $row->id])}}
+                                                    {{--  <a href={{route('admin.students.update', ['id' => $row->id])}}
                                                         class="btn btn-warning btn-sm ml-2 pt-1 pb-1 rounded"><i class="fas fa-solid fa-user-edit"></i></a>
                                                     <a href={{route('admin.students.delete', ['id' => $row->id])}}
-                                                        class="btn btn-danger btn-sm ml-2 pt-1 pb-1 rounded"><i class="fas fa-solid fa-trash"></i></a>
+                                                        class="btn btn-danger btn-sm ml-2 pt-1 pb-1 rounded"><i class="fas fa-solid fa-trash"></i></a>  --}}
                                                 </div>
                                             </td>
 
