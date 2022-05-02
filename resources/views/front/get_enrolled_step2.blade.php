@@ -78,6 +78,7 @@
                   <input type="text" placeholder="Driver's License Number*" name="drivers_license_number" value="{{ old('drivers_license_number') }}" required>
                </div>
             </div>
+            @if(Session::get('user_state_id') == '3')
             <div class="col-md-12">
                <div class="cbx-field">
                   <label class="customCheck" for="non_texas_license_cbx">Not Texas License
@@ -85,26 +86,29 @@
                   <span class="checkmark"></span></label><br>
                </div> 
             </div>
+            @endif
             <div class="col-md-12">
                <div class="field">
                   <input type="text" placeholder="Confirm Driver's License Number*" name="confirm_drivers_license_number" value="{{ old('confirm_drivers_license_number') }}" required>
                </div>
             </div>
-            @if(Session::get('user_state_id') == '2')
+            @if(Session::get('user_state_id') == '3')
             <div class="texas_fields col-md-12">
                <div class="field">
                   <input type="text" placeholder="Driver's License Plate Number (Maybe yours or Family Members - Not Necessarily Vehicle Ticketed in)*"  name="license_plate_number" value="{{ old('license_plate_number') }}" required>
                </div>
             </div>
             @endif
+            @if(Session::get('user_state_id') == '3')
             <div class="col-md-12">
                <div class="cbx-field">
                   <label class="customCheck"  for="vehicle_not_registered_cbx">Vehicle Not Registered In Texas. Is leased, or Belongs to Family Member
-                  <input type="checkbox" name="texas_checkbox"  id="vehicle_not_registered_cbx" value='non registered vehicle' required>
+                  <input type="checkbox" name="texas_checkbox"  id="vehicle_not_registered_cbx" value='non registered vehicle'>
                   <span class="checkmark"></span></label><br>
                </div>
             </div>
-            @if(Session::get('user_state_id') == '2')
+            @endif
+            @if(Session::get('user_state_id') == '3')
             <div class="texas_fields col-md-12">
                <div class="field">
                   <input type="text" placeholder="Confirm Driver's License Plate Number*"  name="confirm_license_plate_number" value="{{ old('confirm_license_plate_number') }}" required>

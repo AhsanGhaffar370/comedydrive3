@@ -74,12 +74,14 @@ class FrontController extends Controller
             $student_detail = StudentDetail::where('user_id', Auth::user()->id)->first();
 
             if (isset($student_detail) && $student_detail->form_step == '2') {
-                // dd('1');
                 return redirect()->route('get_enrolled_step2');
                 // return view('front/get_enrolled_step2', ['states' => $states, 'courses' => $courses, 'counties' => $counties]);
             }
+            if (isset($student_detail) && $student_detail->form_step == '2.1') {
+                // return redirect()->route('get_enrolled_step2');
+                return redirect()->route('get_enrolled_step2_1');
+            }
             elseif (isset($student_detail) && $student_detail->form_step == '3') {
-                // dd('12');
                 return redirect()->route('get_enrolled_step3');
                 // return view('front/get_enrolled_step3', ['states' => $states, 'courses' => $courses, 'counties' => $counties]);
             }
@@ -109,6 +111,10 @@ class FrontController extends Controller
                 // return redirect()->route('get_enrolled_step2');
                 return view('front/get_enrolled_step2', ['states' => $states, 'courses' => $courses, 'counties' => $counties]);
             }
+            if (isset($student_detail) && $student_detail->form_step == '2.1') {
+                // return redirect()->route('get_enrolled_step2');
+                return redirect()->route('get_enrolled_step2_1');
+            }
             elseif (isset($student_detail) && $student_detail->form_step == '3') {
                 return redirect()->route('get_enrolled_step3');
                 // return view('front/get_enrolled_step3', ['states' => $states, 'courses' => $courses, 'counties' => $counties]);
@@ -128,6 +134,7 @@ class FrontController extends Controller
     protected function store_get_enrolled_step2(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'session_state' => 'required',
             'firstname' => 'required',
             'middlename' => 'required',
             'lastname' => 'required',
@@ -135,7 +142,97 @@ class FrontController extends Controller
             'gender' => 'required',
             'drivers_license_state_id' => 'required',
             'drivers_license_number' => 'required | same:confirm_drivers_license_number',
-            'license_plate_number' => 'required | same:confirm_license_plate_number',
+            'license_plate_number' => 'required_if:session_state,3 | same:confirm_license_plate_number',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $user = Auth::user();
+        $form_step_route = '3';
+        try {
+            // Rollback if data not inserted properly
+            DB::transaction(function () use ($request, $user, &$form_step_route) {
+                $form_step = '3';
+                if ($request->get('session_state') == '3') {
+                    $form_step = '2.1';
+                    $form_step_route = '2_1';
+                }
+                $student_detail = StudentDetail::where('user_id', $user->id)->update([
+                    'firstname' => $request->get('firstname'),
+                    'middlename' => $request->get('middlename'),
+                    'lastname' => $request->get('lastname'),
+                    'telephone' => $request->get('telephone'),
+                    'gender' => $request->get('gender'),
+                    'dob' => $request->get('dob') ?? null,
+                    'drivers_license_state_id' => $request->get('drivers_license_state_id'),
+                    'drivers_license_number' => $request->get('drivers_license_number'),
+                    'license_plate_number' => $request->get('license_plate_number') ?? null,
+                    'non_texas_license_name' => $request->get('non_texas_license_name') ?? null,
+                    'non_texas_license_address' => $request->get('non_texas_license_address') ?? null,
+                    'non_texas_license_city' => $request->get('non_texas_license_city') ?? null,
+                    'non_texas_license_zipcode' => $request->get('non_texas_license_zipcode') ?? null,
+                    'non_texas_license_dob' => $request->get('non_texas_license_dob') ?? null,
+                    'non_registered_vehicle_lastname' => $request->get('non_registered_vehicle_lastname') ?? null,
+                    'non_registered_vehicle_address' => $request->get('non_registered_vehicle_address') ?? null,
+                    'non_registered_vehicle_city' => $request->get('non_registered_vehicle_city') ?? null,
+                    'non_registered_vehicle_state' => $request->get('non_registered_vehicle_state') ?? null,
+                    'non_registered_vehicle_zipcode' => $request->get('non_registered_vehicle_zipcode') ?? null,
+                    'non_registered_vehicle_year' => $request->get('non_registered_vehicle_year') ?? null,
+                    'non_registered_vehicle_make' => $request->get('non_registered_vehicle_make') ?? null,
+                    'non_registered_vehicle_expire_year' => $request->get('non_registered_vehicle_expire_year') ?? null,
+                    'non_registered_vehicle_model' => $request->get('non_registered_vehicle_model') ?? null,
+                    'form_step' => $form_step
+                ]);
+            });
+        } catch(\Exception $e) {
+            return redirect()->route('get_enrolled_step2')
+                            ->with('error','Something went wrong');
+        }
+    
+        return redirect()->route('get_enrolled_step'.$form_step_route)
+                        ->with('success','Data has been saved successfully.');
+    }
+    
+    public function get_enrolled_step2_1()
+    {
+        $states = State::all();
+        $courses = Course::all();
+        $counties = County::all();
+
+        if (Auth::check() && Auth::user()->role_id == 2) {
+            $student_detail = StudentDetail::where('user_id', Auth::user()->id)->first();
+
+            if (isset($student_detail) && $student_detail->form_step == '2') {
+                // return redirect()->route('get_enrolled_step2');
+                return redirect()->route('get_enrolled_step2');
+            }
+            if (isset($student_detail) && $student_detail->form_step == '2.1') {
+                // return redirect()->route('get_enrolled_step2_1');
+                return view('front/get_enrolled_step2_1');
+            }
+            elseif (isset($student_detail) && $student_detail->form_step == '3') {
+                return redirect()->route('get_enrolled_step3');
+                // return view('front/get_enrolled_step3', ['states' => $states, 'courses' => $courses, 'counties' => $counties]);
+            }
+            elseif (isset($student_detail) && $student_detail->form_step == '4') {
+                return redirect()->route('get_enrolled_courses');
+                // return view('front/get_enrolled_courses');
+            }
+            else {
+                return view('front/get_enrolled', ['states' => $states, 'courses' => $courses, 'counties' => $counties]);
+            }
+        } else {
+            return view('front/get_enrolled', ['states' => $states, 'courses' => $courses, 'counties' => $counties]);
+        }
+    }
+
+    protected function store_get_enrolled_step2_1(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'ssn_no' => 'required',
+            'dps_audit_no' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -147,27 +244,19 @@ class FrontController extends Controller
         try {
             // Rollback if data not inserted properly
             DB::transaction(function () use ($request, $user) {
-
                 $student_detail = StudentDetail::where('user_id', $user->id)->update([
-                    'firstname' => $request->get('firstname'),
-                    'middlename' => $request->get('middlename'),
-                    'lastname' => $request->get('lastname'),
-                    'telephone' => $request->get('telephone'),
-                    'gender' => $request->get('gender'),
-                    'dob' => $request->get('dob') ?? null,
-                    'drivers_license_state_id' => $request->get('drivers_license_state_id'),
-                    'drivers_license_number' => $request->get('drivers_license_number'),
-                    'license_plate_number' => $request->get('license_plate_number'),
-                    'form_step' => 3
+                    'ssn_no' => $request->get('ssn_no'),
+                    'dps_audit_no' => $request->get('dps_audit_no'),
+                    'form_step' => '3'
                 ]);
             });
         } catch(\Exception $e) {
-            return redirect()->route('get_enrolled_step2')
+            return redirect()->route('get_enrolled_step2_1')
                             ->with('error','Something went wrong');
         }
     
         return redirect()->route('get_enrolled_step3')
-                        ->with('success','Data has been created successfully.');
+                        ->with('success','Data has been saved successfully.');
     }
     
     public function get_enrolled_step3()
@@ -182,6 +271,10 @@ class FrontController extends Controller
             if (isset($student_detail) && $student_detail->form_step == '2') {
                 return redirect()->route('get_enrolled_step2');
                 // return view('front/get_enrolled_step2', ['states' => $states, 'courses' => $courses, 'counties' => $counties]);
+            }
+            if (isset($student_detail) && $student_detail->form_step == '2.1') {
+                // return redirect()->route('get_enrolled_step2');
+                return redirect()->route('get_enrolled_step2_1');
             }
             elseif (isset($student_detail) && $student_detail->form_step == '3') {
                 // return redirect()->route('get_enrolled_step3');
@@ -198,6 +291,7 @@ class FrontController extends Controller
             return view('front/get_enrolled', ['states' => $states, 'courses' => $courses, 'counties' => $counties]);
         }
     }
+    
     
     protected function store_get_enrolled_step3(Request $request)
     {
@@ -233,7 +327,7 @@ class FrontController extends Controller
         }
     
         return redirect()->route('get_enrolled_courses')
-                        ->with('success','Data has been created successfully.');
+                        ->with('success','Data has been saved successfully.');
     }
 
     public function get_enrolled_courses() 
@@ -248,6 +342,10 @@ class FrontController extends Controller
             if (isset($student_detail) && $student_detail->form_step == '2') {
                 return redirect()->route('get_enrolled_step2');
                 // return view('front/get_enrolled_step2', ['states' => $states, 'courses' => $courses, 'counties' => $counties]);
+            }
+            if (isset($student_detail) && $student_detail->form_step == '2.1') {
+                // return redirect()->route('get_enrolled_step2');
+                return redirect()->route('get_enrolled_step2_1');
             }
             elseif (isset($student_detail) && $student_detail->form_step == '3') {
                 return redirect()->route('get_enrolled_step3');

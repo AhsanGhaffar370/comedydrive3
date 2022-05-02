@@ -44,8 +44,24 @@ class CreateStudentDetailsTable extends Migration
             $table->integer('drivers_license_state_id')->nullable(); // FK 
             $table->string('drivers_license_number')->nullable();
             $table->string('license_plate_number')->nullable();
-
-
+            $table->string('non_texas_license_name')->nullable();
+            $table->string('non_texas_license_address')->nullable();
+            $table->string('non_texas_license_city')->nullable();
+            $table->string('non_texas_license_zipcode')->nullable();
+            $table->string('non_texas_license_dob')->nullable();
+            $table->string('non_registered_vehicle_lastname')->nullable();
+            $table->string('non_registered_vehicle_address')->nullable();
+            $table->string('non_registered_vehicle_city')->nullable();
+            $table->string('non_registered_vehicle_state')->nullable();
+            $table->string('non_registered_vehicle_zipcode')->nullable();
+            $table->string('non_registered_vehicle_year')->nullable();
+            $table->string('non_registered_vehicle_make')->nullable();
+            $table->string('non_registered_vehicle_expire_year')->nullable();
+            $table->string('non_registered_vehicle_model')->nullable();
+            
+            $table->string('ssn_no')->nullable();
+            $table->string('dps_audit_no')->nullable();
+            
             $table->string('certificate_mailing_address')->nullable();
             $table->string('certificate_mailing_city')->nullable();
             $table->integer('certificate_mailing_state_id')->nullable(); // FK 
