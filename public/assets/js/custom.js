@@ -8,7 +8,6 @@ $(document).ready(function() {
       $(".check_info_div input, .check_info_div select").attr('required', 'required');
     } 
     else if ($("select[name='payment_type']").length && $("select[name='payment_type']").val() == 'card') {
-      
       $(".card_info_div").removeClass('d_none');
       $(".card_info_div input, .card_info_div select").attr('required', 'required');
       $(".check_info_div").addClass('d_none');
@@ -39,6 +38,98 @@ $(document).ready(function() {
       $(".texas_course_completion").removeClass('d_none');    
     } 
   });
+
+  $(document).on('change', "select[name='course_id']", function(e) {
+    $(".florida_citation_fields").addClass('d_none');
+    $(".florida_case_fields").addClass('d_none');
+    $("select[name='county_id']").removeClass('d_none');    
+    $(".florida_citation_fields input, .florida_case_fields input").removeAttr('required');
+    $("select[name='county_id").attr('required', 'required'); 
+
+    if ($("select[name='course_id']").length && ($("select[name='course_id']").val() == '1' || $("select[name='course_id']").val() == '2')) { 
+      $(".florida_citation_fields").removeClass('d_none');
+      $(".florida_citation_fields input").attr('required', 'required');
+      $(".florida_case_fields").addClass('d_none');
+      $(".florida_case_fields input").removeAttr('required');
+    } 
+    else if ($("select[name='course_id']").length && $("select[name='course_id']").val() == '3') {
+      $(".florida_citation_fields").addClass('d_none');  
+      $(".florida_citation_fields input").removeAttr('required');
+      $(".florida_case_fields").removeClass('d_none'); 
+      $(".florida_case_fields input").attr('required', 'required');
+    } 
+    else if ($("select[name='course_id']").length && $("select[name='course_id']").val() == '4') { // texas
+      $(".florida_citation_fields").addClass('d_none');
+      $(".florida_citation_fields input").removeAttr('required');
+      $(".florida_case_fields").addClass('d_none');
+      $(".florida_case_fields input").removeAttr('required');
+      $("select[name='county_id']").addClass('d_none');   
+      $("select[name='county_id").removeAttr('required'); 
+    } 
+  });
+
+
+
+
+  $(document).on('change', "select[name='state_id']",  function() { 
+    let state = '';
+    let state_id = '';
+    // get value of state
+    if ($(this).find('option:selected').length) {
+      state = $(this).find('option:selected').text(); 
+      state_id = $(this).find('option:selected').val(); 
+    }
+    // filter course county using ajax
+    let arr = ['course_id', 'county_id'];
+    let arr2 = ['Course*', 'County/Court*'];
+  
+    // make ajax request to create course and county dropdown
+    $.ajax({
+      url: '/course_county',
+      type: "get",
+      data: { state_id: state_id },
+      async: false,
+      success: function(response) {
+        // add course and county options in course and county dropdowns
+        $.each(arr, function (i, obj) {
+          let data_str = "";
+          data_str += `
+          <option value="" selected disabled>Select ` + arr2[i] + `</option>`;
+          $.each(response['data'][obj], function (i, obj1) {
+            data_str += `<option value="` + obj1.id + `">` + obj1.name + `</option>`;
+          });
+          $('#'+obj).length ? $('#'+obj).removeAttr('disabled') : '';
+          $('#'+obj).length ? $('#'+obj).html(data_str) : ''; // append course and county dropdown in new row
+          
+          // reset select2 for course and county dropdowns
+        //   let course_county = $('select[name="' + obj + '"]');
+        //   course_county.wrap('');
+  
+        //   if (course_county.length) {
+        //     course_county.select2({
+        //       placeholder: 'Please Select...',
+        //       dropdownParent: course_county.parent()
+        //     });
+        //   }
+        }); 
+      },
+      error: function (jqXHR, exception) {
+          console.log('something went wrong');
+      }
+    });
+  });
+
+
+
+
+
+
+
+
+
+
+
+
 
     $("li:first-child").addClass("first");
     $("li:last-child").addClass("last");

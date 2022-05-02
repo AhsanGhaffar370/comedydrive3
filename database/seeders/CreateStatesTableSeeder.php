@@ -23,7 +23,7 @@ class CreateStatesTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [
-                'name' => 'Mexico',
+                'name' => 'New Mexico',
                 'code' => 'MX',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

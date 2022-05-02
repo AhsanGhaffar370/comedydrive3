@@ -40,6 +40,8 @@ Route::post('/get-enrolled-step3-store', [FrontController::class, 'store_get_enr
 Route::get('/get-enrolled-courses', [FrontController::class, 'get_enrolled_courses'])->name('get_enrolled_courses');
 Route::get('/question', [FrontController::class, 'question'])->name('question');
 // Route::get('/register', [FrontController::class, 'register'])->name('register');
+Route::get('/course_county', [FrontController::class, 'courseCounty']);
+
 
 Route::group(['middleware'=>['student_auth']],function(){
     Route::get('/student-courses', [FrontController::class, 'student_courses'])->name('student-courses');

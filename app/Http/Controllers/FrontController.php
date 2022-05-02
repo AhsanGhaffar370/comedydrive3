@@ -13,6 +13,7 @@ use App\Models\CourseDetail;
 use DB;
 use Illuminate\Support\Facades\Validator;
 use Auth;
+use Response;
 
 class FrontController extends Controller
 {
@@ -270,5 +271,18 @@ class FrontController extends Controller
         }else{
             abort(403);
         }
+    }
+
+    function courseCounty(Request $request) {
+        $data = [];
+        if ($request->has('state_id')) {
+            // $course_ids = Course::where('state_id', $request->state_id)->pluck('id')->all();
+            $data['course_id'] = Course::where('state_id', $request->get('state_id'))->get();
+            $data['county_id'] = County::where('state_id', $request->get('state_id'))->get();
+        }
+        // if ($request->has('course_id')) {
+        //     $data['county_id'] = County::where('course_id', $request->get('course_id'))->get();
+        // }
+        return Response::json(['data' => $data], 200);
     }
 }

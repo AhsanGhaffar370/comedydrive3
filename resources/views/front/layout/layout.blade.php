@@ -20,7 +20,6 @@
 
 @include('front/includes/footer')
 
-
 </body>
 
 </html>

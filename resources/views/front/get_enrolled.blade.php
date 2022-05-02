@@ -24,56 +24,60 @@
       <form method="POST" action="{{ route('register') }}">
          @csrf
          <div class="row">
-            <div class="col-md-12">
-               <div class="field">
-                  <select name="state_id" id="state_id" required>
-                     <option value="" selected disabled>Select State*</option>
-                     @foreach ($states as $state) 
-                     <option value="{{$state->id}}">{{ $state->name }}</option>
-                     @endforeach
-                  </select>
-               </div>
-               <div class="field">
-                  <select name="course_id" id="course_id" required>
-                     <option value="" selected disabled>Select Course*</option>
-                     @foreach ($courses as $course) 
-                     <option value="{{$course->id}}">{{ $course->name }}</option>
-                     @endforeach
-                  </select>
-               </div>
-               <div class="field">
-                  <select name="county_id" id="county_id" required>
-                     <option value="" selected disabled>Select County/Court*</option>
-                     @foreach ($counties as $county) 
-                     <option value="{{$county->id}}">{{ $county->name }}</option>
-                     @endforeach
-                  </select>
-               </div>
-               <div class="field d_none">
+            <div class="col-md-12 field">
+               <select name="state_id" id="state_id" required>
+                  <option value="" selected disabled>Select State*</option>
+                  @foreach ($states as $state) 
+                  <option value="{{$state->id}}">{{ $state->name }}</option>
+                  @endforeach
+               </select>
+            </div>
+            <div class="col-md-12 field">
+               <select name="course_id" id="course_id" required>
+                  <option value="" selected disabled>Select Course*</option>
+                  @foreach ($courses as $course) 
+                  <option value="{{$course->id}}">{{ $course->name }}</option>
+                  @endforeach
+               </select>
+            </div>
+            <div class="col-md-12 field">
+               <select name="county_id" id="county_id" required>
+                  <option value="" selected disabled>Select County/Court*</option>
+                  @foreach ($counties as $county) 
+                  <option value="{{$county->id}}">{{ $county->name }}</option>
+                  @endforeach
+               </select>
+            </div>
+            <div class="row florida_case_fields mt-5 mb-5 d_none">
+               <div class="col-md-12 field">
                   <img src="{{asset('assets/images/case_number.jpg')}}" alt="">
                </div>
-               <div class="field d_none">
+               <div class="col-md-12 field">
                   <input type="text" placeholder="Case Number" name="case_number" >
                </div>
+            </div>
+            <div class="row florida_citation_fields mt-5 mb-5 d_none">
                <br><br>
-               <div class="field d_none">
-                  <img src="{{asset('assets/images/citation.jpg')}}" alt="">
-               </div>
-               <div class="field d_none">
-                  <input type="text" placeholder="Citation/Ticket Number" name="citation_number" >
-               </div>
-               <div class="row d_none">
-                  <div class="col-md-6">
-                     <div class="field d_none">
-                        <p for="">Citation Date*</p>
-                        <input type="date" placeholder="Citation Date" name="citation_due_date" >
-                     </div>
+               <div class="col-md-12">
+                  <div class="field">
+                     <img src="{{asset('assets/images/citation.jpg')}}" alt="">
                   </div>
-                  <div class="col-md-6">
-                     <div class="field d_none">
-                        <p for="">Court Due Date*</p>
-                        <input type="date" placeholder="Court Due Date" name="citation_court_due_date" >
-                     </div>
+               </div>
+               <div class="col-md-12">
+                  <div class="field">
+                     <input type="text" placeholder="Citation/Ticket Number" name="citation_number" >
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="field">
+                     <p for="">Citation Date*</p>
+                     <input type="date" placeholder="Citation Date" name="citation_due_date" >
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="field">
+                     <p for="">Court Due Date*</p>
+                     <input type="date" placeholder="Court Due Date" name="citation_court_due_date" >
                   </div>
                </div>
             </div>
@@ -157,7 +161,7 @@
             </div>
             <div class="col-md-6 card_info_div">
               <div class="field">
-                  <input type="text" placeholder="Card Number" name="card_number" >
+                  <input type="text" placeholder="Card Number" name="card_number">
               </div>
             </div>
             <div class="col-md-6 card_info_div">
@@ -174,19 +178,36 @@
               <div class="field">
                   <select name="card_expiry_month" id="card_expiry_month" >
                     <option value="" selected disabled>Select Expiry Month*</option>
-                    <option value="1">Month1</option>
-                    <option value="2">Month2</option>
-                    <option value="3">Month3</option>
+                    <option value="01-Jan">01-Jan</option>
+                    <option value="02-Feb">02-Feb</option>
+                    <option value="03-Mar">03-Mar</option>
+                    <option value="04-Apr">04-Apr</option>
+                    <option value="05-May">05-May</option>
+                    <option value="06-Jun">06-Jun</option>
+                    <option value="07-Jul">07-Jul</option>
+                    <option value="08-Aug">08-Aug</option>
+                    <option value="09-Sep">09-Sep</option>
+                    <option value="10-Oct">10-Oct</option>
+                    <option value="11-Nov">11-Nov</option>
+                    <option value="12-Dec">12-Dec</option>
                   </select>
               </div>
             </div>
             <div class="col-md-6 card_info_div">
               <div class="field">
-                  <select name="card_expiry_date" id="card_expiry_date" >
-                    <option value="" selected disabled>Select Expiry Date*</option>
-                    <option value="1">Date1</option>
-                    <option value="2">Date2</option>
-                    <option value="3">Date3</option>
+                  <select name="card_expiry_year" id="card_expiry_year" >
+                    <option value="" selected disabled>Select Expiry Year*</option>
+                    <option value="<?php echo date("Y"); ?>"><?php echo date("Y"); ?></option>
+                    <option value="<?php echo date("Y", strtotime('+1 years')); ?>"><?php echo date("Y", strtotime('+1 years')); ?></option>
+                    <option value="<?php echo date("Y", strtotime('+2 years')); ?>"><?php echo date("Y", strtotime('+2 years')); ?></option>
+                    <option value="<?php echo date("Y", strtotime('+3 years')); ?>"><?php echo date("Y", strtotime('+3 years')); ?></option>
+                    <option value="<?php echo date("Y", strtotime('+4 years')); ?>"><?php echo date("Y", strtotime('+4 years')); ?></option>
+                    <option value="<?php echo date("Y", strtotime('+5 years')); ?>"><?php echo date("Y", strtotime('+5 years')); ?></option>
+                    <option value="<?php echo date("Y", strtotime('+6 years')); ?>"><?php echo date("Y", strtotime('+6 years')); ?></option>
+                    <option value="<?php echo date("Y", strtotime('+7 years')); ?>"><?php echo date("Y", strtotime('+7 years')); ?></option>
+                    <option value="<?php echo date("Y", strtotime('+8 years')); ?>"><?php echo date("Y", strtotime('+8 years')); ?></option>
+                    <option value="<?php echo date("Y", strtotime('+9 years')); ?>"><?php echo date("Y", strtotime('+9 years')); ?></option>
+                    <option value="<?php echo date("Y", strtotime('+10 years')); ?>"><?php echo date("Y", strtotime('+10 years')); ?></option>
                   </select>
               </div>
             </div>
@@ -226,10 +247,10 @@
               </div>
             </div>
          </div>
-         <div class="d_none col-md-12">
+         <div class="col-md-12">
             <div class="cbx-field">
-               <label class="customCheck"  for="password">Password should contain one letter, one digit and minimum 8 characters
-               <input type="checkbox"  id="password">
+               <label class="customCheck"  for="terms_conditions">I understand and agree with all the terms, conditions and policies.*
+               <input type="checkbox"  id="terms_conditions" required>
                <span class="checkmark"></span></label><br>
             </div>
          </div>
@@ -240,4 +261,5 @@
    </div>
    </div>
 </section>
+
 @endsection

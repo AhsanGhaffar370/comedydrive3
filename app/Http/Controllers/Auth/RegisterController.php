@@ -69,13 +69,17 @@ class RegisterController extends Controller
             'course_id' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
+            'citation_number' => ['required_if:course_id,1,2'],
+            'citation_due_date' => ['required_if:course_id,1,2'],
+            'citation_court_due_date' => ['required_if:course_id,1,2'],
+            'case_number' => ['required_if:course_id,3'],
             'payment_type' => ['required'],
             'card_type' => ['required_if:payment_type,card'],
             'card_number' => ['required_if:payment_type,card'],
             'card_name' => ['required_if:payment_type,card'],
             'card_code' => ['required_if:payment_type,card'],
             'card_expiry_month' => ['required_if:payment_type,card'],
-            'card_expiry_date' => ['required_if:payment_type,card'],
+            'card_expiry_year' => ['required_if:payment_type,card'],
             'bank_name' => ['required_if:payment_type,check'],
             'bank_account_name' => ['required_if:payment_type,check'],
             'bank_checking_account_no' => ['required_if:payment_type,check'],
@@ -113,7 +117,7 @@ class RegisterController extends Controller
                     $card_name = $data['card_name'];
                     $card_code = $data['card_code'];
                     $card_expiry_month = $data['card_expiry_month'];
-                    $card_expiry_date = $data['card_expiry_date'];
+                    $card_expiry_year = $data['card_expiry_year'];
 
                     $status = 1;
                 } 

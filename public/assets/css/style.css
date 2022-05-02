@@ -801,7 +801,7 @@
   @media (max-width: 320px) {}
   
   .d_none {
-      display: none;
+      display: none !important;
   }
   
   
