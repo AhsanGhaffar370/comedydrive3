@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Session;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -37,6 +38,9 @@ class LoginController extends Controller
             return route( 'admin.dashboard' );
         }
         else if (Auth::user()->role_id == 2) {
+            $student_detail = StudentDetail::where('user_id', Auth::user()->id)->first();
+            Session::put('user_state_id', ($student_detail->state_id ?? ''));
+            
             return route( 'get_enrolled_step2' );
         } else {
             return route( 'course' );
@@ -56,6 +60,7 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
+        Session::forget('user_state_id');
      
         $request->session()->invalidate();
      

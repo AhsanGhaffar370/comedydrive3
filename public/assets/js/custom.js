@@ -41,9 +41,9 @@ $(document).ready(function() {
 
   $(document).on('change', "select[name='course_id']", function(e) {
     $(".florida_citation_fields").addClass('d_none');
-    $(".florida_case_fields").addClass('d_none');
-    $("select[name='county_id']").removeClass('d_none');    
+    $(".florida_case_fields").addClass('d_none');  
     $(".florida_citation_fields input, .florida_case_fields input").removeAttr('required');
+    $("select[name='county_id']").removeClass('d_none');  
     $("select[name='county_id").attr('required', 'required'); 
 
     if ($("select[name='course_id']").length && ($("select[name='course_id']").val() == '1' || $("select[name='course_id']").val() == '2')) { 
@@ -68,10 +68,14 @@ $(document).ready(function() {
     } 
   });
 
-
-
+  $("select[name='course_id']").attr('disabled', 'disabled');
+  $("select[name='county_id']").attr('disabled', 'disabled');
 
   $(document).on('change', "select[name='state_id']",  function() { 
+    
+    $("select[name='county_id']").removeClass('d_none');  
+    $("select[name='county_id").attr('required', 'required'); 
+
     let state = '';
     let state_id = '';
     // get value of state
@@ -119,10 +123,26 @@ $(document).ready(function() {
     });
   });
 
-
-
-
-
+  $(document).on('click', "input[name='texas_checkbox']", function(e) {
+    if ($(this).val() == 'non texas license') {
+      if ($(this).is(':checked')) {
+        $(".non_texas_license_fields").removeClass('d_none');
+        $(".non_texas_license_fields input").attr('required', 'required');
+      } else {
+        $(".non_texas_license_fields").addClass('d_none');
+        $(".non_texas_license_fields input").removeAttr('required');
+      }
+    } 
+    else if ($(this).val() == 'non registered vehicle') {
+      if ($(this).is(':checked')) {
+        $(".non_registered_vehicle_fields").removeClass('d_none');
+        $(".non_registered_vehicle_fields input").attr('required', 'required');
+      } else {
+        $(".non_registered_vehicle_fields").addClass('d_none');
+        $(".non_registered_vehicle_fields input").removeAttr('required');
+      }
+    }
+  });
 
 
 
@@ -150,7 +170,7 @@ $(document).ready(function() {
         $('.overlay').fadeIn();
     });
 
-     $('.closePop,.overlay').click(function(){
+    $('.closePop,.overlay').click(function(){
         $('.popupMain').fadeOut();
         $('.overlay').fadeOut();
     });

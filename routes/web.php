@@ -27,7 +27,7 @@ Auth::routes();
 Route::get('/', [FrontController::class, 'index'])->name('home');
 
 // Route::group(['middleware'=>['login_control']],function(){
-    Route::get('/home', [FrontController::class, 'home'])->name('home');
+    Route::get('/home', [FrontController::class, 'home'])->name('home1');
 // });
 
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact');

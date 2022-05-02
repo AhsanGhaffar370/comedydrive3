@@ -18,7 +18,7 @@
       @endif
       <div class="contact-text">
          <div class="question-hd">
-            <h1>Registration</h1>
+            <h1>Please Enter Your Mailing Address</h1>
          </div>
       </div>
       <form method="POST" action="{{ route('store_get_enrolled_step3') }}">

@@ -13,6 +13,7 @@ use App\Models\CourseDetail;
 use DB;
 use Illuminate\Support\Facades\Validator;
 use Auth;
+use Session;
 use Response;
 
 class FrontController extends Controller
@@ -34,17 +35,23 @@ class FrontController extends Controller
      */
     public function index()
     {
-        return view('front/home');
+        if(Auth::check() && Auth::user()->role_id == '1'){
+            return redirect()->route('admin.dashboard');
+        }else if(Auth::check() && Auth::user()->role_id == '2'){
+            return redirect()->route('get_enrolled');
+        }else{
+            return view('front/home');
+        }
     }
 
     public function home()
     {
-        if(auth()->user()->role_id == '1'){
+        if(Auth::check() && Auth::user()->role_id == '1'){
             return redirect()->route('admin.dashboard');
-        }else if(auth()->user()->role_id == '2'){
+        }else if(Auth::check() && Auth::user()->role_id == '2'){
             return redirect()->route('get_enrolled');
         }else{
-            return redirect()->route('/');
+            return view('front/home');
         }
     }
     public function contact()
@@ -120,7 +127,6 @@ class FrontController extends Controller
     
     protected function store_get_enrolled_step2(Request $request)
     {
-        // dd($request);
         $validator = Validator::make($request->all(), [
             'firstname' => 'required',
             'middlename' => 'required',
@@ -128,8 +134,8 @@ class FrontController extends Controller
             'telephone' => 'required',
             'gender' => 'required',
             'drivers_license_state_id' => 'required',
-            'drivers_license_number' => 'required',
-            'license_plate_number' => 'required',
+            'drivers_license_number' => 'required | same:confirm_drivers_license_number',
+            'license_plate_number' => 'required | same:confirm_license_plate_number',
         ]);
 
         if ($validator->fails()) {

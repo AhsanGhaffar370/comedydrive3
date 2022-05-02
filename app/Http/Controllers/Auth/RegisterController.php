@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Session;
 use DB;
 
 class RegisterController extends Controller
@@ -97,7 +98,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
         try{
             $user = null;
             $student_details = null;
@@ -133,14 +133,14 @@ class RegisterController extends Controller
                 $citation_number = null;
                 $citation_due_date = null;
                 $citation_court_due_date = null;
-                if ($data['state_id'] == '1' && $data['course_id'] == '1') {
+                if ($data['state_id'] == '1' && ($data['course_id'] == '1' || $data['course_id'] == '2')) {
                     $citation_number = $data['citation_number'];
                     $citation_due_date = $data['citation_due_date'];
                     $citation_court_due_date = $data['citation_court_due_date'];
                 }
 
                 $case_number = null;
-                if ($data['state_id'] == '1' && $data['course_id'] == '2') {
+                if ($data['state_id'] == '1' && $data['course_id'] == '3') {
                     $case_number = $data['case_number'];
                 }
 
@@ -180,6 +180,7 @@ class RegisterController extends Controller
                     'status' => '1',
                 ]);
             });
+            Session::put('user_state_id', $data['state_id']);
         } catch(\Exception $e) {
             return redirect()->route('get_enrolled')
                             ->with('error','Something went wrong');
