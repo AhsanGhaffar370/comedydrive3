@@ -13,7 +13,7 @@
 
          <ul class="courses">
             <li><a href="#">Review Course</a></li>
-            <li><a href="#">Update Profile</a></li>
+            <li><a href="{{ route('edit_get_enrolled_step2', ['id' => auth()->user()->id]) }}">Update Profile</a></li>
             <li><a href="#">Upgrade Shipping from Regular Mail</a></li>
          </ul>
             </div>

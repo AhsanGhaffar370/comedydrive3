@@ -35,6 +35,8 @@ Route::get('/re-enter-course', [FrontController::class, 'course'])->name('course
 Route::get('/get-enrolled', [FrontController::class, 'get_enrolled'])->name('get_enrolled');
 Route::get('/get-enrolled-step2', [FrontController::class, 'get_enrolled_step2'])->name('get_enrolled_step2');
 Route::post('/get-enrolled-step2-store', [FrontController::class, 'store_get_enrolled_step2'])->name('store_get_enrolled_step2');
+Route::get('/get-enrolled-step2-edit/{id}', [FrontController::class, 'edit_get_enrolled_step2'])->name('edit_get_enrolled_step2');
+Route::post('/get-enrolled-step2-update', [FrontController::class, 'update_get_enrolled_step2'])->name('update_get_enrolled_step2');
 Route::get('/get-enrolled-step2_1', [FrontController::class, 'get_enrolled_step2_1'])->name('get_enrolled_step2_1');
 Route::post('/get-enrolled-step2_1-store', [FrontController::class, 'store_get_enrolled_step2_1'])->name('store_get_enrolled_step2_1');
 Route::get('/get-enrolled-step3', [FrontController::class, 'get_enrolled_step3'])->name('get_enrolled_step3');
@@ -43,7 +45,7 @@ Route::get('/get-enrolled-courses', [FrontController::class, 'get_enrolled_cours
 Route::get('/question', [FrontController::class, 'question'])->name('question');
 // Route::get('/register', [FrontController::class, 'register'])->name('register');
 Route::get('/course_county', [FrontController::class, 'courseCounty']);
-
+Route::get('/thank-you', [FrontController::class, 'thank_you']);
 
 Route::group(['middleware'=>['student_auth']],function(){
     Route::get('/student-courses', [FrontController::class, 'student_courses'])->name('student-courses');
