@@ -4,15 +4,20 @@
 
 @section('content')
 
+<style>
+    .table .thead-dark th {
+    background-color: #2c3172 !important;
+}
+</style>
 <div class="page_height pb-5">
     <div class="page-title">
         <div class="title_left">
-            <h1>Cargo <span class="size16">Type</span></h1>
-			<a href={{route('admin.students.list')}} class="btn btn-light border pt-2 pb-2 pl-3 pr-3">
+            <h1>Students <span class="size16">List</span></h1>
+			{{-- <a href={{route('admin.students.list')}} class="btn btn-light border pt-2 pb-2 pl-3 pr-3">
 				<i class="fas fa-eye"></i><br>
 				<span class="size13">View All</span> 
 			</a>
-			{{--  <a href={{route('admin.students.add')}} class="btn btn-light border pt-2 pb-2 pl-3 pr-3">
+			 <a href={{route('admin.students.add')}} class="btn btn-light border pt-2 pb-2 pl-3 pr-3">
 				<i class="fas fa-plus"></i><br>
 				<span class="size13">Add New</span> 
 			</a>  --}}
@@ -42,9 +47,10 @@
                                             <th>ID</th>
                                             <th>Name</th>
                                             <th>Email</th>
+                                            <th>State</th>
                                             <th>Status</th>
                                             <!-- <th>Brocker Info</th> -->
-                                            <th style="padding: 0px 40px 10px 40px;">Action</th>
+                                            <th >Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -55,12 +61,7 @@
                                             <td>{{$row->id}}</td>
                                             <td>{{$row->studentDetail->firstname ?? ''}}</td>
                                             <td>{{$row->email}}</td>
-                                            
-                                            <!-- <td>
-												<strong>N:</strong>{{-- $row->brocker_name --}}<br>
-												<strong>T:</strong>{{-- $row->brocker_phone --}}<br>
-												<strong>E:</strong>{{-- $row->brocker_email --}}
-											</td> -->
+                                            <td>{{$row->studentDetail->state->name ?? ''}}</td>
                                             
                                             <td>
                                                 @if($row->status =="1")
@@ -70,20 +71,18 @@
                                                 @endif
                                             </td>
 
-                                            <td>
+                                            <td >
                                                 <div class="btn-group" style="display: -webkit-box;">
                                                     <a href={{route('admin.students.view', ['id' => $row->id])}}
-                                                        class="btn btn-success btn-sm ml-2 pt-1 pb-1 rounded"><i class="fas fa-solid fa-eye"></i></a>
+                                                        class="btn left_col btn-sm ml-2 pt-1 pb-1 rounded"><i class="fas fa-solid fa-eye text-white"></i></a>
                                                     {{--  <a href={{route('admin.students.update', ['id' => $row->id])}}
                                                         class="btn btn-warning btn-sm ml-2 pt-1 pb-1 rounded"><i class="fas fa-solid fa-user-edit"></i></a>
                                                     <a href={{route('admin.students.delete', ['id' => $row->id])}}
                                                         class="btn btn-danger btn-sm ml-2 pt-1 pb-1 rounded"><i class="fas fa-solid fa-trash"></i></a>  --}}
                                                 </div>
                                             </td>
-
                                         </tr>
                                         @endforeach
-
                                     </tbody>
                                 </table>
                             </div>

@@ -40,7 +40,7 @@
             <li class="nav-item dropdown open text-white" style="padding-left: 15px;">
             
                 <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false" >
-                <span class="font-weight-bold ml-1 text-white">{{ auth()->user()->name}}</span>
+                <span class="font-weight-bold ml-1 text-white">{{ auth()->user()->email}}</span>
                 </a>
                 <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item "  href={{route('logout')}}><i class="fa fa-sign-out pull-right"></i> Log Out</a>

@@ -89,21 +89,21 @@
                   <h5>Free Email Delivery! (at course completion)</h5>
                </div>
                <div class="rd-field texas_course_completion d_none">
-                  <input type="radio" id="course_completion_certificate_price_id" name="course_completion_certificate_price" value="$2.50">
+                  <input type="radio" id="course_completion_certificate_price_id" name="course_completion_certificate_price" value="Regular Mail ($2.50)">
                   <label for="course_completion_certificate_price_id">Regular Mail ($2.50) - Typical 3-7 Day **Cheapest**</label><br>
                   <div class="field">
                      <h5>Hard copy of certificate sent via first class mail from Houston TX.</h5>
                   </div>
                </div>
                <div class="rd-field texas_course_completion d_none">
-                  <input type="radio" id="course_completion_certificate_price_id" name="course_completion_certificate_price" value="$5.50">
+                  <input type="radio" id="course_completion_certificate_price_id" name="course_completion_certificate_price" value="Immediate Download/Email ($5.50)">
                   <label for="course_completion_certificate_price_id">Immediate Download/Email ($5.50) **Most Popular**</label><br>
                   <div class="field">
                      <h5>Upon course completion certificate will be downloadable and will also be e-mailed to you. This is a new state law as of Oct. 2018</h5>
                   </div>
                </div>
                <div class="rd-field mexico_course_completion d_none">
-                  <input type="radio" id="course_completion_certificate_price_id" name="course_completion_certificate_price" value="$2.50">
+                  <input type="radio" id="course_completion_certificate_price_id" name="course_completion_certificate_price" value="Regular Mail ($2.50)">
                   <label for="course_completion_certificate_price_id">Regular Mail ($2.50) - Typical 3-7 Day **Cheapest**</label><br>
                   <div class="field">
                      <h5>Hard copy of certificate sent via first class mail from Houston TX.</h5>

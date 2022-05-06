@@ -150,14 +150,12 @@ class FrontController extends Controller
         }
 
         $user = Auth::user();
-        $form_step_route = '3';
-        try {
+        // try {
             // Rollback if data not inserted properly
-            DB::transaction(function () use ($request, $user, &$form_step_route) {
+            DB::transaction(function () use ($request, $user) {
                 $form_step = '3';
                 if ($request->get('session_state') == '3') {
                     $form_step = '2.1';
-                    $form_step_route = '2_1';
                 }
                 $student_detail = StudentDetail::where('user_id', $user->id)->update([
                     'firstname' => $request->get('firstname'),
@@ -185,18 +183,25 @@ class FrontController extends Controller
                     'non_registered_vehicle_model' => $request->get('non_registered_vehicle_model') ?? null,
                     'form_step' => $form_step
                 ]);
+                // dd($student_detail, $form_step);
             });
-        } catch(\Exception $e) {
-            return redirect()->route('get_enrolled_step2')
-                            ->with('error','Something went wrong');
+        // } catch(\Exception $e) {
+        //     return redirect()->route('get_enrolled_step2')
+        //                     ->with('error','Something went wrong');
+        // }
+        if ($request->get('session_state') == '3') {
+            return redirect()->route('get_enrolled_step2_1')
+            ->with('success','Data has been saved successfully.');
         }
-    
-        return redirect()->route('get_enrolled_step'.$form_step_route)
-                        ->with('success','Data has been saved successfully.');
+        else {
+            return redirect()->route('get_enrolled_step3')
+            ->with('success','Data has been saved successfully.');
+        }
     }
     
     public function get_enrolled_step2_1()
     {
+        return view('front/get_enrolled_step2_1');
         $states = State::all();
         $courses = Course::all();
         $counties = County::all();

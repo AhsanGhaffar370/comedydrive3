@@ -24,23 +24,27 @@
       <form method="POST" action="{{ route('store_get_enrolled_step2_1') }}">
          @csrf
          <div class="row">
-            <p>Since you selected to get a certified copy of your driving record. <br> Please enter the info below so it can be processed.</p>
             <div class="col-md-12">
+               <div class="field">
+               <p>Since you selected to get a certified copy of your driving record. <br> Please enter the info below so it can be processed.</p>
+               </div>
+            </div>
+            <div class="col-md-8 mt-4">
                <div class="field">
                   <input type="text" placeholder="Last 4 Digits of SSN*"  name="ssn_no" value="{{ old('ssn_no') }}" required>
                </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-4">
                <div class="field">
                   <img src="{{asset('assets/images/ssn.jpg')}}" alt="">
                </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-8 mt-4">
                <div class="field">
                   <input type="text" placeholder="DPS Audit Number*"  name="dps_audit_no" value="{{ old('dps_audit_no') }}" required>
                </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-4">
                <div class="field">
                   <img src="{{asset('assets/images/dps_no.jpg')}}" alt="">
                </div>

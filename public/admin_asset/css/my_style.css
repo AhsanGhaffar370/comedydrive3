@@ -588,7 +588,7 @@ Add these properties in elements where we want animation on scroll
 
 
 /* a {
-    color: #457b9dff !important;
+    color: #4f55b2 !important;
     transition: all 0.2s 0s ease-out;
     text-decoration: none !important;
     text-decoration-color: rgb(16, 206, 32);
@@ -716,7 +716,7 @@ upper-roman           I  II  III
     display: flex;
     align-items: center;
     padding: 15px 30px;
-    /* border-bottom: 2px solid #457b9dff; */
+    /* border-bottom: 2px solid #4f55b2; */
 }
 
 .nav {
@@ -1072,11 +1072,11 @@ FOREGROUND
 */
 
 .cl_bd {
-    color: #3c8dbc !important;
+    color: #4f55b2 !important;
 }
 
 .cl_bl {
-    color: #457b9dff !important;
+    color: #4f55b2 !important;
 }
 
 .cl_bp {
@@ -1109,11 +1109,11 @@ BACKGROUND
 */
 
 .bg_bd {
-    background-color: #3c8dbc;
+    background-color: #4f55b2;
 }
 
 .bg_bl {
-    background-color: #457b9dff;
+    background-color: #4f55b2;
 }
 
 .bg_bp {
